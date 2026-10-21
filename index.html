@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Survives Production</title>
+<meta name="description" content="Software for small businesses, built with AI and proven on real jobs. Lead and data tools for contractors and trades, with every build on YouTube.">
+<meta name="theme-color" content="#0E1A2B">
+<link rel="canonical" href="https://survivesproduction.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%230E1A2B'/%3E%3Cpath d='M7.5 13.5l3.5 3.5 7.5-8' fill='none' stroke='%233FD48D' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://survivesproduction.com/">
+<meta property="og:title" content="Survives Production">
+<meta property="og:description" content="Software for small businesses, built with AI and proven on real jobs. Lead and data tools for contractors and trades, with every build on YouTube.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@survivesprod">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: dark navy ops board. Hero = pitch on the left, a real field log on the right (the one loud element).
+   Below: builds as ruled rows, three ways to work together, about, contact. Left-aligned throughout. */
+:root {
+  --bg: #0E1A2B;          /* brand navy */
+  --raised: #13233A;      /* log panel, row hover */
+  --line: #233853;        /* rules */
+  --ink: #E9EEF4;         /* body text */
+  --dim: #98AAC0;         /* secondary text */
+  --red: #F0545A;         /* brand red: what broke, primary action */
+  --green: #3FD48D;       /* brand green: what got fixed / survived */
+  --on-red: #1A0A0C;
+  --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --measure: 62ch;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-stretch: 100%;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+a { color: inherit; }
+a:focus-visible, .btn:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 2px; }
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+
+/* Header */
+.top { border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; flex-wrap: wrap; }
+.mark { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.mark svg { flex: none; }
+.mark span {
+  font-family: var(--display); font-weight: 800; font-size: 1.15rem;
+  font-stretch: 72%; letter-spacing: 0.01em;
+}
+.top nav { display: flex; gap: 22px; flex-wrap: wrap; }
+.top nav a { text-decoration: none; color: var(--dim); font-size: 0.95rem; }
+.top nav a:hover { color: var(--ink); }
+
+/* Hero */
+.hero .wrap {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(32px, 5vw, 72px); align-items: start; padding-block: clamp(48px, 8vw, 96px) clamp(48px, 7vw, 88px);
+}
+h1 {
+  font-family: var(--display); font-weight: 850;
+  font-stretch: 64%;
+  font-size: clamp(2.9rem, 7vw, 5.4rem); line-height: 0.95; letter-spacing: -0.01em;
+  margin: 0 0 28px; text-wrap: balance;
+}
+h1 .line2 { display: block; color: var(--dim); }
+.lede { font-size: 1.2rem; max-width: 34ch; margin: 0 0 32px; color: var(--ink); }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 20px; font-weight: 650; font-size: 1rem; text-decoration: none;
+  border-radius: 6px; border: 1px solid var(--line);
+}
+.btn.primary { background: var(--red); border-color: var(--red); color: var(--on-red); }
+.btn.primary:hover { filter: brightness(1.08); }
+.btn.ghost:hover { border-color: var(--dim); }
+
+/* Field log: the one loud element */
+.log {
+  background: var(--raised); border: 1px solid var(--line); border-radius: 10px;
+  font-family: var(--mono); font-size: 0.86rem; line-height: 1.5; overflow: hidden;
+}
+.log header {
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  padding: 12px 18px; border-bottom: 1px solid var(--line); color: var(--dim);
+}
+.log ol { list-style: none; margin: 0; padding: 10px 0; }
+.log li {
+  display: grid; grid-template-columns: 4.2em minmax(0, 1fr); gap: 12px;
+  padding: 9px 18px; animation: in 0.35s ease-out backwards;
+}
+.log li:nth-child(1) { animation-delay: 0.15s; }
+.log li:nth-child(2) { animation-delay: 0.5s; }
+.log li:nth-child(3) { animation-delay: 0.85s; }
+.log li:nth-child(4) { animation-delay: 1.2s; }
+.log li:nth-child(5) { animation-delay: 1.55s; }
+.log li:nth-child(6) { animation-delay: 1.9s; }
+.tag { font-weight: 600; letter-spacing: 0.04em; }
+.tag.run, .tag.next { color: var(--dim); }
+.tag.bug { color: var(--red); }
+.tag.fix, .tag.live { color: var(--green); }
+.log li.win { background: color-mix(in srgb, var(--green) 9%, transparent); }
+.log li.win { position: relative; }
+.log li.win .msg { color: var(--ink); font-weight: 600; padding-right: 9em; }
+.stamp {
+  position: absolute; right: 16px; top: 50%;
+  transform: translateY(-50%) rotate(-7deg);
+  font-family: var(--display); font-weight: 900; font-stretch: 75%;
+  font-size: 1.05rem; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--green); border: 2px solid var(--green); border-radius: 4px;
+  padding: 1px 8px; line-height: 1.3;
+  animation: stamp 0.28s cubic-bezier(.2,1.6,.4,1) 2.3s backwards;
+}
+@keyframes stamp { from { opacity: 0; transform: translateY(-50%) rotate(-7deg) scale(1.8); } }
+.msg { color: var(--ink); overflow-wrap: anywhere; }
+.log footer { padding: 12px 18px; border-top: 1px solid var(--line); color: var(--dim); }
+.log footer a { color: var(--ink); }
+@keyframes in { from { opacity: 0; transform: translateY(4px); } }
+@media (prefers-reduced-motion: reduce) { .log li, .stamp { animation: none; } }
+
+/* Sections */
+section.band { border-top: 1px solid var(--line); }
+section.band > .wrap { padding-block: clamp(56px, 8vw, 96px); }
+h2 {
+  font-family: var(--display); font-weight: 800; font-stretch: 70%;
+  font-size: clamp(2rem, 4vw, 2.9rem); line-height: 1.02; margin: 0 0 14px; text-wrap: balance;
+}
+.intro { color: var(--dim); max-width: var(--measure); margin: 0 0 40px; }
+h3 {
+  font-family: var(--display); font-weight: 750; font-stretch: 85%;
+  font-size: 1.4rem; line-height: 1.15; margin: 0 0 6px;
+}
+
+/* Builds: ruled rows */
+.builds { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.build {
+  display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) minmax(0, 13rem);
+  gap: 20px 40px; padding-block: 30px; border-bottom: 1px solid var(--line);
+}
+.build .who { color: var(--dim); font-size: 0.95rem; margin: 0; }
+.build p { margin: 0 0 12px; max-width: var(--measure); }
+.build .result { color: var(--green); font-weight: 600; margin: 0; }
+.status {
+  display: inline-block; font-family: var(--mono); font-size: 0.78rem;
+  padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--dim); margin-bottom: 14px;
+}
+.status.live { color: var(--green); border-color: color-mix(in srgb, var(--green) 45%, var(--line)); }
+.links { display: flex; flex-direction: column; gap: 8px; font-size: 0.95rem; }
+.links a { color: var(--ink); text-underline-offset: 3px; text-decoration-color: var(--line); }
+.links a:hover { text-decoration-color: var(--ink); }
+.links .soon { color: var(--dim); }
+
+/* Ways in */
+.ways { margin: 0; display: grid; gap: 26px; max-width: 46rem; }
+.ways div { display: grid; gap: 4px; }
+.ways dt { font-family: var(--display); font-weight: 800; font-stretch: 85%; font-size: clamp(1.5rem, 3vw, 1.9rem); line-height: 1.1; }
+.ways dd { margin: 0; color: var(--dim); max-width: var(--measure); }
+
+/* About + contact */
+.about p { margin: 0 0 16px; max-width: var(--measure); }
+.about .signoff { font-family: var(--display); font-weight: 800; font-stretch: 75%; font-size: 1.6rem; color: var(--green); margin-top: 28px; }
+
+.contact h2 { max-width: 18ch; }
+.contact .actions { margin-top: 8px; }
+.handle { font-family: var(--mono); font-size: 0.95rem; color: var(--ink); margin-top: 18px; user-select: all; }
+
+footer.site { border-top: 1px solid var(--line); color: var(--dim); font-size: 0.9rem; }
+footer.site .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 26px; }
+footer.site nav { display: flex; gap: 20px; flex-wrap: wrap; }
+footer.site a { text-decoration: none; }
+footer.site a:hover { color: var(--ink); }
+
+@media (max-width: 880px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .build { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .links { flex-direction: row; flex-wrap: wrap; gap: 8px 20px; }
+}
+@media (max-width: 480px) {
+  .top nav { gap: 16px; }
+  .log li { grid-template-columns: 3.6em minmax(0, 1fr); gap: 8px; padding-inline: 14px; }
+  .log header, .log footer { padding-inline: 14px; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Survives Production home">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="6" fill="none" stroke="#3FD48D" stroke-width="2"/><path d="M7.5 13.5l3.5 3.5 7.5-8" fill="none" stroke="#3FD48D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Survives Production</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#builds">Builds</a>
+      <a href="#work">Work with me</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Software for small businesses, built with AI.<span class="line2">Proven on real jobs.</span></h1>
+        <p class="lede">I'm Noah. I build tools for contractors and trades out of public data nobody is looking at, prove them on real jobs, and show the whole build on YouTube.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">Watch the builds</a>
+          <a class="btn ghost" href="#work">Get one for your business</a>
+        </div>
+      </div>
+
+      <figure class="log" aria-label="Field log from a contractor lead-scorer build" style="margin:0">
+        <header><span>field-log / contractor-lead-scorer</span><span>northeast CT</span></header>
+        <ol>
+          <li><span class="tag run">RUN</span><span class="msg">Score every home in 8 towns from free town records</span></li>
+          <li><span class="tag bug">BUG</span><span class="msg">81% of homes came back with a perfect score</span></li>
+          <li><span class="tag fix">FIX</span><span class="msg">Caught and fixed before the contractor ever saw the list</span></li>
+          <li><span class="tag run">RUN</span><span class="msg">Ran the list live with the contractor</span></li>
+          <li class="win"><span class="tag live">LIVE</span><span class="msg">2 estimates booked in one afternoon</span><span class="stamp" aria-hidden="true">Survived</span></li>
+          <li><span class="tag next">NEXT</span><span class="msg">Postcards to real mailboxes. Homeowners reach out first.</span></li>
+        </ol>
+        <footer>Full story: <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">I Turned Free Town Records Into Contractor Leads</a></footer>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band" id="builds">
+    <div class="wrap">
+      <h2>What I've built</h2>
+      <p class="intro">Each build starts with a real business and public data it isn't using yet. The generic version of every tool is free on GitHub. Client names, towns and data stay private.</p>
+
+      <ul class="builds">
+        <li class="build">
+          <div>
+            <span class="status live">Running for a client</span>
+            <h3>Property lead scorer</h3>
+            <p class="who">Siding and roofing contractor, northeast Connecticut</p>
+          </div>
+          <div>
+            <p>Ranks every home in a service area by how likely it is to need exterior work, using house age, tree cover, storm history and permit records from town assessor sites.</p>
+            <p class="result">2 estimates booked the first afternoon it was used.</p>
+          </div>
+          <div class="links">
+            <a href="https://github.com/SurvivesProduction/property-lead-scorer" target="_blank" rel="noopener">Free code on GitHub</a>
+            <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">Watch the video</a>
+          </div>
+        </li>
+
+        <li class="build">
+          <div>
+            <span class="status live">Free kit</span>
+            <h3>Hand-raiser lead flow</h3>
+            <p class="who">Any contractor sending mail</p>
+          </div>
+          <div>
+            <p>Postcard, QR code, estimate form, then a Google Sheet row and an email to you. If the form's backend goes down, the homeowner gets a call-or-text fallback and the request still reaches you.</p>
+            <p class="result">Built after reading Connecticut's telemarketing law. Nobody gets a cold call.</p>
+          </div>
+          <div class="links">
+            <a href="https://github.com/SurvivesProduction/hand-raiser-lead-flow" target="_blank" rel="noopener">Free code on GitHub</a>
+            <span class="soon">Video coming soon</span>
+          </div>
+        </li>
+
+        <li class="build">
+          <div>
+            <span class="status">Built</span>
+            <h3>Bid and contract history</h3>
+            <p class="who">Commercial electrician, Maryland</p>
+          </div>
+          <div>
+            <p>Pulls past contract awards from government and school portals to show which vendors keep winning, and which contracts are coming up for rebid or renewal.</p>
+            <p class="result">Hundreds of past awards cleaned and de-duplicated from the first portal.</p>
+          </div>
+          <div class="links">
+            <a href="https://github.com/SurvivesProduction/bid-vendor-history-scraper" target="_blank" rel="noopener">Free code on GitHub</a>
+            <span class="soon">Video coming soon</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" id="work">
+    <div class="wrap">
+      <h2>Want one for your business?</h2>
+      <p class="intro">Three ways in, depending on how hands-on you want to be.</p>
+      <dl class="ways">
+        <div><dt>Build it yourself.</dt><dd>Every build has free code on GitHub. Swap in your own towns and data. Costs nothing.</dd></div>
+        <div><dt>Get the full build.</dt><dd>The version I actually run: real data sources, tuned scoring, the daily email. Message me for details.</dd></div>
+        <div><dt>Have me run it for you.</dt><dd>I point it at your service area and send you the leads. Your data never shows up in a video or a repo.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="band about" id="about">
+    <div class="wrap">
+      <h2>Why the name</h2>
+      <p>My day job is production support. For five-plus years I've been the person who gets called when software breaks after it ships.</p>
+      <p>Getting AI to write a tool is the easy part now. Keeping it working on messy town records with a real customer waiting is the part I care about, so that's what I film, failures included. Client names, addresses and data stay out of the videos and the code.</p>
+      <p class="signoff">It survives production.</p>
+    </div>
+  </section>
+
+  <section class="band contact" id="contact">
+    <div class="wrap">
+      <h2>Run a small business with leads hiding in public records?</h2>
+      <p class="intro">Tell me what you do, where you work, and where your jobs come from now. I'll tell you honestly whether there's a tool in it.</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:hello@survivesproduction.com?subject=A%20tool%20for%20my%20business">Email me</a>
+        <a class="btn ghost" href="https://x.com/survivesprod" target="_blank" rel="noopener">Message me on X</a>
+      </div>
+      <p class="handle">hello@survivesproduction.com</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>Survives Production</span>
+    <nav aria-label="Elsewhere">
+      <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://github.com/SurvivesProduction" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/survivesprod" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@survivesproduction.com">Email</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
