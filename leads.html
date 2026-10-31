@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -100,8 +100,8 @@
   details.panel { padding: 0; }
   details.panel > summary { list-style: none; cursor: pointer; padding: 16px; font-size: 14px; font-weight: 700; color: var(--ink); }
   details.panel > summary::-webkit-details-marker { display: none; }
-  details.panel > summary::before { content: 'â–¸ '; color: var(--muted); }
-  details.panel[open] > summary::before { content: 'â–¾ '; }
+  details.panel > summary::before { content: '▸ '; color: var(--muted); }
+  details.panel[open] > summary::before { content: '▾ '; }
   details.panel > summary ~ * { padding-left: 16px; padding-right: 16px; }
   details.panel > summary ~ *:last-child { padding-bottom: 16px; }
   #results-list { list-style: none; margin: 0; padding: 0; }
@@ -135,7 +135,7 @@
   <header>
     <div>
       <h1>Quiet Corner Lead Board</h1>
-      <div class="subtitle">Quiet Corner exterior leads Â· built by Survives Production &middot; drag a slider, flip a filter &mdash; the ranking re-sorts live, right here in the browser.</div>
+      <div class="subtitle">Quiet Corner exterior leads · built by Survives Production &middot; drag a slider, flip a filter &mdash; the ranking re-sorts live, right here in the browser.</div>
       <div id="tagline"></div>
     </div>
     <button type="button" id="theme-toggle">Toggle theme</button>
@@ -590,7 +590,7 @@ if (typeof module !== 'undefined') {
       const chip = document.createElement('button');
       chip.type = 'button';
       chip.className = 'chip' + (state.towns && state.towns.has(town) ? ' chip-active' : '');
-      chip.textContent = town + (claimed ? ' Â· claimed' : '');
+      chip.textContent = town + (claimed ? ' · claimed' : '');
       chip.addEventListener('click', () => {
         const towns = state.towns ? new Set(state.towns) : new Set();
         if (towns.has(town)) towns.delete(town);
@@ -756,9 +756,9 @@ if (typeof module !== 'undefined') {
     // meaningless once a viewer has narrowed to one town or one material.
     const defaultRank = defaultRankByLeadKey.get(lead.lead_key);
     const delta = defaultRank - lead.rank; // positive = moved up
-    let arrow = '<span class="rank-same">â€”</span>';
-    if (delta > 0) arrow = `<span class="rank-up">â–² ${delta}</span>`;
-    else if (delta < 0) arrow = `<span class="rank-down">â–¼ ${Math.abs(delta)}</span>`;
+    let arrow = '<span class="rank-same">—</span>';
+    if (delta > 0) arrow = `<span class="rank-up">▲ ${delta}</span>`;
+    else if (delta < 0) arrow = `<span class="rank-down">▼ ${Math.abs(delta)}</span>`;
     // A teaser row's year_built is already the DECADE (e.g. 1700, not
     // 1732) -- build_lead_board.py's build_teaser_data coarsens it for
     // re-identification reasons (see that module's own docstring); show
@@ -766,7 +766,7 @@ if (typeof module !== 'undefined') {
     // "1700" a plain exact year would otherwise print as.
     const yearLabel = lead.year_built
       ? (DATA.metadata && DATA.metadata.year_built_granularity === 'decade' ? `${lead.year_built}s` : lead.year_built)
-      : 'â€”';
+      : '—';
     const stateOnlyBadge = lead.flags.is_state_only
       ? '<span class="badge badge-state-only">state data only, not verified</span>'
       : '';
@@ -830,15 +830,15 @@ if (typeof module !== 'undefined') {
     }
     if (state.requireRealPermitHistory) parts.push('real permit history only');
     if (state.yearBuiltMin != null || state.yearBuiltMax != null) {
-      parts.push(`Built ${state.yearBuiltMin ?? 'any'}â€“${state.yearBuiltMax ?? 'any'}`);
+      parts.push(`Built ${state.yearBuiltMin ?? 'any'}–${state.yearBuiltMax ?? 'any'}`);
     }
     if (state.canopyMin != null || state.canopyMax != null) {
-      parts.push(`Canopy ${state.canopyMin ?? 'any'}â€“${state.canopyMax ?? 'any'}%`);
+      parts.push(`Canopy ${state.canopyMin ?? 'any'}–${state.canopyMax ?? 'any'}%`);
     }
     if (state.jobSizePctMin != null || state.jobSizePctMax != null) {
-      parts.push(`Job size pct ${state.jobSizePctMin ?? 'any'}â€“${state.jobSizePctMax ?? 'any'}`);
+      parts.push(`Job size pct ${state.jobSizePctMin ?? 'any'}–${state.jobSizePctMax ?? 'any'}`);
     }
-    return parts.length ? parts.join(' Â· ') : 'No filters active';
+    return parts.length ? parts.join(' · ') : 'No filters active';
   }
   function renderResults() {
     // Filter FIRST, then rank the filtered subset twice -- once at the
