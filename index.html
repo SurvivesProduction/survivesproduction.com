@@ -352,9 +352,10 @@ h3 {
 /* Trial claim comes from /data/offer.json so home and the offer page can't disagree. */
 SP.offer().then(function (d) {
   var t = d.trialLog;
-  if (t.estimateRequests === null || t.estimateRequests === undefined) return;
-  var n = t.estimateRequests, cards = t.cardsMailed;
-  var txt = n + " estimate request" + (n === 1 ? "" : "s") + (cards ? " from " + cards + " cards mailed" : "") + " so far. ";
+  if (t.estimatesDone === null || t.estimatesDone === undefined) return;
+  var n = t.estimatesDone;
+  var how = t.channel ? " (" + t.channel.charAt(0).toLowerCase() + t.channel.slice(1) + ")" : "";
+  var txt = n + " estimate" + (n === 1 ? "" : "s") + " done" + how + ". ";
   var link = function () { var a = document.createElement("a"); a.href = "/offer/#trial"; a.textContent = "See the trial log"; return a; };
   var msg = document.getElementById("log-msg"); msg.textContent = txt; msg.appendChild(link());
   document.getElementById("log-tag").className = "tag live"; document.getElementById("log-tag").textContent = "LIVE";

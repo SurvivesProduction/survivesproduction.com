@@ -15,12 +15,10 @@
     "requestRateBenchmarkUrl": "https://www.4over4.com/statistics/direct-mail-response-rate-benchmarks"
   },
   "territories": [
-    { "id": "east", "name": "East", "phase": "founding", "status": "open", "towns": ["Killingly", "Brooklyn", "Canterbury"] },
-    { "id": "north", "name": "North", "phase": "founding", "status": "open", "towns": ["Thompson", "Woodstock", "Putnam"] },
-    { "id": "west", "name": "West", "phase": "founding", "status": "open", "towns": ["Windham", "Hampton", "Pomfret", "Chaplin"] },
-    { "id": "southeast", "name": "Southeast", "phase": "expansion", "status": "building", "towns": ["Plainfield", "Sterling", "Voluntown"] },
-    { "id": "south", "name": "South", "phase": "expansion", "status": "building", "towns": ["Griswold", "Lisbon", "Sprague", "Scotland"] },
-    { "id": "northwest", "name": "Northwest", "phase": "expansion", "status": "building", "towns": ["Ashford", "Eastford", "Union", "Willington"] }
+    { "id": "taken-1", "name": "Taken", "phase": "founding", "status": "taken", "towns": ["Killingly", "Woodstock", "Ashford"] },
+    { "id": "east", "name": "East", "phase": "founding", "status": "open", "towns": ["Brooklyn", "Canterbury", "Plainfield"] },
+    { "id": "north", "name": "North", "phase": "founding", "status": "open", "towns": ["Thompson", "Putnam", "Pomfret"] },
+    { "id": "west", "name": "West", "phase": "founding", "status": "open", "towns": ["Windham", "Hampton", "Chaplin", "Scotland"] }
   ],
   "towns": {
     "Killingly":  { "singleFamily": 6186, "permitData": true,  "scraped": true },
@@ -48,11 +46,11 @@
   "townCountsSource": "CT statewide CAMA and Parcel Layer, single-family use codes, queried Nov 3, 2026. Killingly, Ashford, Eastford, Scotland and Voluntown report only a broad Residential code, so their counts may include some 2-family homes.",
   "townCountsSourceUrl": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer/FeatureServer/0",
   "trialLog": {
-    "updated": null,
-    "channel": null,
-    "homesScored": null, "homesVerified": null, "cardsMailed": null,
-    "estimateRequests": null, "estimatesDone": null, "jobsWon": null,
-    "note": null
+    "updated": "2026-10-11",
+    "channel": "Phone calls off the job board, before we switched to mail",
+    "homesScored": null, "homesVerified": null, "cardsMailed": 0,
+    "estimateRequests": null, "estimatesDone": 2, "jobsWon": null,
+    "note": "Two estimates booked in one afternoon with one crew. We no longer cold-call; current outreach is postcards."
   },
   "compliance": { "salespersonRegistration": null, "privacyNoticeUrl": "/privacy/" }
 }

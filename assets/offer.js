@@ -47,6 +47,7 @@
     var worth = Math.round(reach * d.assumptions.mailableShare);
     return { t: t, towns: towns, sf: sum(function (x) { return x.sf; }), reach: reach, worth: worth, quarters: worth / d.batch.homesPer90Days };
   }
+  function sellable(t) { return t.status !== "taken"; }
   function statusText(t) {
     if (t.status === "open") return t.phase === "founding" ? "Open (founding price)" : "Open";
     if (t.status === "taken") return "Taken";
@@ -98,7 +99,7 @@
 
   function funnel(d) {
     var wrap = $("#funnel"), tabs = $("#funnel-tabs");
-    var terrs = d.territories.map(function (t) { return territory(d, t); });
+    var terrs = d.territories.filter(sellable).map(function (t) { return territory(d, t); });
     if (!state.terr) state.terr = terrs[0].t.id;
     tabs.innerHTML = "";
     terrs.forEach(function (T) {
@@ -178,8 +179,11 @@
   }
 
   function territories(d) {
-    var terrs = d.territories.map(function (t) { return territory(d, t); });
+    var terrs = d.territories.filter(sellable).map(function (t) { return territory(d, t); });
     var list = $("#terr-list"); list.innerHTML = "";
+    d.territories.filter(function (t) { return !sellable(t); }).forEach(function (t) {
+      list.appendChild(h("li", {}, [h("h3", { text: t.name }), h("p", { "class": "towns", text: t.towns.join(", ") })]));
+    });
     terrs.forEach(function (T) {
       var permit = T.towns.filter(function (x) { return x.permit; }).map(function (x) { return x.name; });
       var li = h("li", {}, [
@@ -200,10 +204,19 @@
     wrap.appendChild(barChart(rows, { max: max, ref: { value: 4, label: "1 year" }, aria: "Quarters of mail per territory, at " + d.batch.homesPer90Days + " homes per quarter: " +
       terrs.map(function (T) { return T.t.name + " " + T.quarters.toFixed(1); }).join(", ") + ". One year is 4 quarters." }));
     wrap.appendChild(numbersTable(["Territory", "Worth mailing", "Quarters of mail"], terrs.map(function (T) { return [T.t.name, int(T.worth), T.quarters.toFixed(1)]; })));
-    var founding = d.territories.filter(function (t) { return t.phase === "founding"; });
-    var counts = d.territories.filter(function (t) { return t.phase === "founding"; }).map(function (t) { return t.towns.length; });
-    $("#terr-note").textContent = "Founding territories: " + founding.length + ". " +
-      d.territories.filter(function (t) { return t.status === "building"; }).length + " more are marked Building: coming, not for sale yet.";
+    var open = d.territories.filter(function (t) { return t.status === "open"; });
+    var taken = d.territories.filter(function (t) { return t.status === "taken"; }).length;
+    var building = d.territories.filter(function (t) { return t.status === "building"; }).length;
+    var note = "Open founding territories: " + open.length + " of " + d.foundingTerritoriesTotal + ".";
+    if (taken) note += " " + taken + " taken.";
+    if (building) note += " " + building + " more are marked Building: coming, not for sale yet.";
+    $("#terr-note").textContent = note;
+    var counts = open.map(function (t) { return t.towns.length; });
+    // Limits: towns not yet scraped use state parcel data
+    var unscraped = [];
+    d.territories.filter(sellable).forEach(function (t) { t.towns.forEach(function (n) { if (!d.towns[n].scraped) unscraped.push(n); }); });
+    var lim = $("#limit-scrape");
+    if (lim && unscraped.length) { lim.textContent = "Towns we haven't scraped yet (" + unscraped.join(", ") + ") use the state's parcel data until we finish."; lim.hidden = false; }
     return { min: Math.min.apply(null, counts), max: Math.max.apply(null, counts) };
   }
 
