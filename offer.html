@@ -211,6 +211,10 @@ input[type=number] {
 .proof .wrap { padding-block: 28px; }
 .proof .guarantee p { font-size: clamp(1.15rem, 2.4vw, 1.45rem); }
 .proof .guarantee p + p { margin-top: 10px; }
+.fnref { color: var(--green); text-decoration: none; font-weight: 600; padding: 0 3px; }
+.fnref:hover { text-decoration: underline; }
+.footnote { margin: 14px 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--dim); }
+.footnote:target { color: var(--ink); }
 .cutoff { margin: 14px 0 0; font-weight: 650; }
 
 /* About + CTA */
@@ -262,7 +266,7 @@ footer.site a:hover { color: var(--ink); }
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <p class="offer-name"><b>Offer</b><span id="offer-name">Winter Quiet Corner Siding Crew Pipeline: 10 Exclusive Homes Mailed in 14 Days</span></p>
+      <p class="offer-name"><b>Offer</b><span id="offer-name">Winter Quiet Corner Siding Crew Pipeline: 10 Exclusive Homes Mailed in 14 Days*</span></p>
       <h1>Siding crews go quiet every winter.</h1>
       <p class="lede">Get estimates on your calendar this winter, from homeowners in your town who asked for one.</p>
       <p class="how">I find the homes in public town records, check each one, and mail the homeowners. You show up and do the estimate.</p>
@@ -403,7 +407,7 @@ const OFFERS = [
       reason: "Winter",
       avatar: "Quiet Corner Siding Crew",
       goal: "10 Exclusive Homes",
-      interval: "Mailed in 14 Days",  // TODO(noah): confirm turnaround
+      interval: "Mailed in 14 Days*",  // a trailing * links to core.footnote
       container: "Pipeline"
     },
 
@@ -425,10 +429,11 @@ const OFFERS = [
         cta: { label: "Get 2 free homes", subject: "Send me 2 homes in my town" } },
 
       { id: "core", role: "core", tier: "Core", name: "Winter Pipeline", term: "90 days",
-        price: 1997,                // TODO(noah): confirm core price
-        foundingPrice: null,        // optional: set a number to show a founding price
-        foundingSpotsLeft: null,    // optional: shown only with foundingPrice. Plain text, not a countdown
+        price: 1997,
+        foundingPrice: 1497,        // optional: set a number to show a founding price
+        foundingSpotsLeft: 3,       // optional: shown only with foundingPrice. Plain text, not a countdown
         blurb: "10 exclusive homes in your town, checked, mailed, and set up so homeowners who want an estimate come to you.",
+        footnote: "*From sign-up to postcards in the mail for a new town. Delivery after that is up to USPS.",
         guaranteeLine: "90 days of the Keep-Mailing Guarantee.",  // shown only when guarantee.mode is not "none"
         includes: ["report", "verify", "excl", "mail", "form", "refresh"] },
 
@@ -451,17 +456,15 @@ const OFFERS = [
     },
 
     // mode: "none" | "conditional" | "money_back". "none" hides the section.
-    // TODO(noah): confirm before going live
     guarantee: {
       mode: "conditional",
       name: "The Keep-Mailing Guarantee",
-      text: "If your 10 homes don't produce an estimate request in 90 days, I keep mailing until they do, free."
+      text: "If your 10 homes don't produce an estimate request in 90 days, I'll mail your next 10 homes again, free."
     },
 
     // Shown under the hero. Empty list hides it. No names.
-    // TODO(noah): confirm wording is accurate
     proof: [
-      "First afternoon on the board, a Quiet Corner crew booked two estimates."
+      "Early outreach in one Quiet Corner town: two homeowners interested from a handful of contacts."
     ],
 
     // status: "open" | "taken". Only mark a town taken when it really is.
@@ -498,7 +501,16 @@ const OFFERS = [
     "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(SITE.mailBody);
 
   const m = offer.magic;
-  $("offer-name").textContent = m.reason + " " + m.avatar + " " + m.container + ": " + m.goal + " " + m.interval;
+  const coreStep = offer.ladder.find((s) => s.role === "core");
+  const star = /\*$/.test(m.interval) && coreStep.footnote;
+  $("offer-name").textContent = m.reason + " " + m.avatar + " " + m.container + ": " + m.goal + " " + m.interval.replace(/\*$/, "");
+  if (star) {
+    const ref = el("a", "fnref", "*");
+    ref.href = "#fn-mail";
+    ref.setAttribute("aria-describedby", "fn-mail");
+    ref.setAttribute("aria-label", "Footnote");
+    $("offer-name").appendChild(ref);
+  }
 
   const free = offer.ladder.find((s) => s.role === "free");
   const core = offer.ladder.find((s) => s.role === "core");
@@ -557,6 +569,11 @@ const OFFERS = [
         ul.appendChild(row);
       });
       li.appendChild(ul);
+      if (s.footnote) {
+        const fn = el("p", "footnote", s.footnote);
+        fn.id = "fn-mail";
+        li.appendChild(fn);
+      }
     }
     if (s.role === "keep" && s.includes) {
       li.appendChild(el("p", "covers", "Covers: " + s.includes.map((id) => pieceById[id].title).join(" and ") + "."));
