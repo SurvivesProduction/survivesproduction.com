@@ -96,7 +96,8 @@ h2 {
   font-size: clamp(2rem, 4vw, 2.9rem); line-height: 1.02; margin: 0 0 14px; text-wrap: balance;
 }
 h3 { font-family: var(--display); font-weight: 750; font-stretch: 85%; font-size: 1.25rem; line-height: 1.2; margin: 0 0 6px; }
-.lede { font-size: 1.2rem; max-width: 46ch; margin: 0 0 30px; }
+.lede { font-size: 1.2rem; max-width: 46ch; margin: 0 0 14px; }
+.how { max-width: 52ch; margin: 0 0 30px; color: var(--dim); }
 .intro { color: var(--dim); max-width: var(--measure); margin: 0 0 36px; }
 .actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .btn {
@@ -141,35 +142,30 @@ section.band > .wrap { padding-block: clamp(48px, 7vw, 84px); }
 
 /* Stack */
 .stack-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 28px; align-items: start; }
+.calc-col { position: sticky; top: 16px; }
 .card { background: var(--raised); border: 1px solid var(--line); border-radius: 10px; padding: 20px; }
 .card h3 { margin-bottom: 14px; }
-fieldset { border: 0; margin: 0 0 20px; padding: 0; min-width: 0; }
-legend { padding: 0; font-family: var(--mono); font-size: 0.8rem; color: var(--dim); margin-bottom: 8px; }
-.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.plan { position: relative; display: block; cursor: pointer; }
-.plan input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
-.plan .face {
-  display: flex; flex-direction: column; gap: 2px; height: 100%;
-  border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--bg);
-}
-.plan .price { font-family: var(--display); font-weight: 800; font-stretch: 80%; font-size: 1.3rem; line-height: 1.1; }
-.plan .price small { font-family: var(--mono); font-weight: 400; font-size: 0.75rem; color: var(--dim); }
-.plan .pname { font-size: 0.9rem; color: var(--dim); }
-.plan:hover .face { border-color: var(--dim); }
-.plan input:checked + .face { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); background: color-mix(in srgb, var(--green) 10%, var(--bg)); }
-.plan input:checked + .face .pname { color: var(--ink); }
-.plan input:focus-visible + .face { outline: 2px solid var(--green); outline-offset: 3px; }
-
-.pieces { list-style: none; margin: 0; padding: 0; }
-.piece { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 12px; padding: 12px 0; border-top: 1px solid var(--line); }
-.piece:first-child { border-top: 0; padding-top: 0; }
-.piece .dot { grid-row: span 2; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; border: 2px solid var(--line); }
-.piece.in .dot { border-color: var(--green); background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M5.5 11.5l3.5 3.5 7-8' fill='none' stroke='%2306241A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
-.piece .pt { font-weight: 650; line-height: 1.3; }
-.piece .pd { color: var(--dim); font-size: 0.93rem; line-height: 1.45; }
-.piece.out .pt, .piece.out .pd { opacity: 0.55; }
-.piece .avail { grid-column: 2; font-family: var(--mono); font-size: 0.75rem; color: var(--dim); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.rung { background: var(--raised); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
+.rung .tier { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--dim); margin: 0 0 6px; }
+.rung .rname { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap; }
+.rung h3 { margin: 0; }
+.rung .rprice { font-family: var(--display); font-weight: 800; font-stretch: 80%; font-size: 1.5rem; line-height: 1.1; }
+.rung .rprice small { font-family: var(--mono); font-weight: 400; font-size: 0.75rem; color: var(--dim); }
+.rung .blurb { margin: 6px 0 0; color: var(--dim); font-size: 0.97rem; }
+.rung .note { margin: 8px 0 0; font-family: var(--mono); font-size: 0.8rem; color: var(--green); }
+.rung .covers { margin: 8px 0 0; font-size: 0.93rem; }
+.rung .btn { margin-top: 14px; }
+.rung.core { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); }
+.rung.core .tier { color: var(--green); }
+.pieces { list-style: none; margin: 16px 0 0; padding: 0; }
+.piece { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.piece .dot { grid-row: span 2; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; border: 2px solid var(--green); background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M5.5 11.5l3.5 3.5 7-8' fill='none' stroke='%2306241A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.piece .pt { font-weight: 650; line-height: 1.3; }
+.piece.anchor .pt { font-size: 1.1rem; }
+.piece .pd { color: var(--dim); font-size: 0.93rem; line-height: 1.45; }
 
 /* Calculator */
 .field { margin-bottom: 20px; }
@@ -211,6 +207,12 @@ input[type=number] {
 .town .st { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); text-decoration: none; display: inline-block; }
 .legend { font-family: var(--mono); font-size: 0.8rem; color: var(--dim); margin: 0; }
 
+.proof { border-top: 1px solid var(--line); }
+.proof .wrap { padding-block: 28px; }
+.proof .guarantee p { font-size: clamp(1.15rem, 2.4vw, 1.45rem); }
+.proof .guarantee p + p { margin-top: 10px; }
+.cutoff { margin: 14px 0 0; font-weight: 650; }
+
 /* About + CTA */
 .about p { margin: 0 0 16px; max-width: var(--measure); }
 .contact h2 { max-width: 20ch; }
@@ -226,10 +228,9 @@ footer.site a:hover { color: var(--ink); }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .steps li:nth-child(2)::after { display: none; }
   .stack-grid { grid-template-columns: minmax(0, 1fr); }
+  .calc-col { position: static; }
 }
 @media (max-width: 640px) {
-  .plans { grid-template-columns: minmax(0, 1fr); }
-  .plan .face { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 12px; }
   .bar-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .bar-row .lbl b { display: inline; margin-left: 6px; }
 }
@@ -262,20 +263,73 @@ footer.site a:hover { color: var(--ink); }
   <section class="hero">
     <div class="wrap">
       <p class="offer-name"><b>Offer</b><span id="offer-name">Winter Quiet Corner Siding Crew Pipeline: 10 Exclusive Homes in 30 Days</span></p>
-      <h1>Winter siding work, found in your town's own records</h1>
-      <p class="lede">For small exterior crews in Connecticut's Quiet Corner. I find the homes that need siding or roofing, and homeowners who want an estimate come to you.</p>
+      <h1>Siding crews go quiet every winter.</h1>
+      <p class="lede">Get estimates on your calendar this winter, from homeowners in your town who asked for one.</p>
+      <p class="how">I find the homes in public town records, check each one, and mail the homeowners. You show up and do the estimate.</p>
       <div class="actions">
-        <a class="btn primary" href="#stack">See what you get</a>
-        <a class="btn ghost" href="/leads">See a sample board</a>
+        <a class="btn primary" data-mail href="mailto:hello@survivesproduction.com?subject=Send%20me%202%20homes%20in%20my%20town">Get 2 free homes in your town</a>
+        <a class="btn ghost" href="#stack">See what you get</a>
       </div>
-      <noscript><p class="intro" style="margin-top:24px">The plan picker and price calculator below need JavaScript. Email hello@survivesproduction.com and I'll send the numbers.</p></noscript>
+      <noscript><p class="intro" style="margin-top:24px">The offer details and price calculator below need JavaScript. Email hello@survivesproduction.com and I'll send the numbers.</p></noscript>
+    </div>
+  </section>
+
+  <section class="proof" id="proof" hidden>
+    <div class="wrap"><div class="guarantee" id="proof-list"></div></div>
+  </section>
+
+  <section class="band" id="stack">
+    <div class="wrap">
+      <h2>What you get, and what it costs next to one job</h2>
+      <p class="intro">Start free. Pay only if the first homes look right. Put in your own numbers on the right. Nothing here is a promise of how many jobs you'll win.</p>
+
+      <div class="stack-grid">
+        <ol class="ladder" id="ladder"></ol>
+
+        <div class="calc-col">
+          <div class="card" aria-labelledby="nums-h">
+            <h3 id="nums-h">Your numbers</h3>
+            <div class="field">
+              <label for="job-num">Your average siding job ($)</label>
+              <div class="pair">
+                <input type="range" id="job-range" aria-label="Average siding job, slider">
+                <input type="number" id="job-num" inputmode="numeric">
+              </div>
+            </div>
+            <div class="field">
+              <label for="close-num">Out of 10 estimates, how many do you usually close?</label>
+              <div class="pair">
+                <input type="range" id="close-range" aria-label="Estimates closed out of 10, slider">
+                <input type="number" id="close-num" inputmode="numeric">
+              </div>
+            </div>
+            <div class="result" aria-live="polite">
+              <p class="big" id="out-big"></p>
+              <p class="be" id="out-be"></p>
+              <div class="bars" id="bars" aria-hidden="true">
+                <div class="bar-row"><span class="lbl">One average job<b id="bar-job-v"></b></span><div class="track"><div class="fill job" id="bar-job"></div></div></div>
+                <div class="bar-row"><span class="lbl" id="bar-cost-l"></span><div class="track"><div class="fill cost" id="bar-cost"></div></div></div>
+              </div>
+              <p class="bad" id="out-bad"></p>
+              <p class="quiet" id="out-quiet"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="guarantee" hidden>
+    <div class="wrap">
+      <h2 id="guarantee-name">If it doesn't work</h2>
+      <div class="guarantee"><p id="guarantee-text"></p></div>
     </div>
   </section>
 
   <section class="band" id="how">
     <div class="wrap">
-      <h2>How it works</h2>
-      <p class="intro">No cold calls, no guessing. Every home on your list comes out of public records, and I look at each one before it gets a postcard.</p>
+      <h2>Why it works</h2>
+      <p class="intro">Every home on your list comes out of public town records, and I look at each one before it gets a postcard. Nobody gets a cold call.</p>
       <ol class="steps">
         <li><h3>Records</h3><p>I pull your town's assessor and permit records and score every home for siding and roof age.</p></li>
         <li><h3>Street View</h3><p>I check each top home on Street View and drop the ones already redone.</p></li>
@@ -286,65 +340,13 @@ footer.site a:hover { color: var(--ink); }
     </div>
   </section>
 
-  <section class="band" id="stack">
-    <div class="wrap">
-      <h2>What you get, and what it costs next to one job</h2>
-      <p class="intro">Pick a plan to see what's in it. Then put in your own numbers. Nothing here is a promise of how many jobs you'll win.</p>
-
-      <div class="stack-grid">
-        <div class="card" aria-labelledby="pieces-h">
-          <h3 id="pieces-h">The pieces</h3>
-          <fieldset>
-            <legend>Plan</legend>
-            <div class="plans" id="plans"></div>
-          </fieldset>
-          <ul class="pieces" id="pieces"></ul>
-        </div>
-
-        <div class="card" aria-labelledby="nums-h">
-          <h3 id="nums-h">Your numbers</h3>
-          <div class="field">
-            <label for="job-num">Your average siding job ($)</label>
-            <div class="pair">
-              <input type="range" id="job-range" aria-label="Average siding job, slider">
-              <input type="number" id="job-num" inputmode="numeric">
-            </div>
-          </div>
-          <div class="field">
-            <label for="close-num">Out of 10 estimates, how many do you usually close?</label>
-            <div class="pair">
-              <input type="range" id="close-range" aria-label="Estimates closed out of 10, slider">
-              <input type="number" id="close-num" inputmode="numeric">
-            </div>
-          </div>
-          <div class="result" aria-live="polite">
-            <p class="big" id="out-big"></p>
-            <p class="be" id="out-be"></p>
-            <div class="bars" id="bars" aria-hidden="true">
-              <div class="bar-row"><span class="lbl">One average job<b id="bar-job-v"></b></span><div class="track"><div class="fill job" id="bar-job"></div></div></div>
-              <div class="bar-row"><span class="lbl" id="bar-cost-l"></span><div class="track"><div class="fill cost" id="bar-cost"></div></div></div>
-            </div>
-            <p class="bad" id="out-bad"></p>
-            <p class="quiet" id="out-quiet"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" id="guarantee" hidden>
-    <div class="wrap">
-      <h2>If it doesn't work</h2>
-      <div class="guarantee"><p id="guarantee-text"></p></div>
-    </div>
-  </section>
-
   <section class="band" id="towns-band">
     <div class="wrap">
       <h2>One crew per town</h2>
       <p class="intro">I only work with one crew in a town, first come. Once a town is taken, those homes don't go to anyone else.</p>
       <ul class="towns" id="towns"></ul>
       <p class="legend"><span id="towns-open"></span></p>
+      <p class="cutoff" id="cutoff" hidden></p>
     </div>
   </section>
 
@@ -360,15 +362,16 @@ footer.site a:hover { color: var(--ink); }
   <section class="band contact" id="contact">
     <div class="wrap">
       <h2>Is your town still open?</h2>
-      <p class="intro">Send me your name, your town and the best number to reach you. I'll tell you if it's open and what the first list would look like.</p>
+      <p class="intro">Send me your name, your town and the best number to reach you. I'll send 2 scored homes to drive by, and tell you if the town is open.</p>
       <div class="actions">
-        <a class="btn primary" id="cta-mail" href="mailto:hello@survivesproduction.com?subject=Is%20my%20town%20open%3F">Ask if your town is open</a>
+        <a class="btn primary" data-mail href="mailto:hello@survivesproduction.com?subject=Send%20me%202%20homes%20in%20my%20town">Get 2 free homes in your town</a>
         <a class="btn ghost" href="/leads">See a sample board</a>
       </div>
       <p class="handle">hello@survivesproduction.com</p>
     </div>
   </section>
 </main>
+
 
 <footer class="site">
   <div class="wrap">
@@ -387,7 +390,6 @@ footer.site a:hover { color: var(--ink); }
 /* ---- Offer config: change numbers and wording here, not in the markup ---- */
 const SITE = {
   contactEmail: "hello@survivesproduction.com",
-  mailSubject: "Is my town open?",
   mailBody: "Name:\nTown:\nBest number:\n"
 };
 
@@ -396,7 +398,7 @@ const OFFERS = [
   {
     id: "crew-pipeline",
 
-    // Offer name = "<reason> <avatar> <container>: <goal> in <interval>"
+    // Offer name label = "<reason> <avatar> <container>: <goal> in <interval>"
     magic: {
       reason: "Winter",
       avatar: "Quiet Corner Siding Crew",
@@ -405,26 +407,42 @@ const OFFERS = [
       container: "Pipeline"
     },
 
+    // Pieces of the core offer, in display order. `anchor` gets the bigger type.
     pieces: [
-      { id: "report",  title: "10 scored homes in one town",       desc: "From town assessor and permit records, scored for siding and roof age" },
-      { id: "excl",    title: "Town exclusivity",                  desc: "No other crew gets these homes" },
-      { id: "verify",  title: "Street View check on every home",   desc: "Weeds out houses that were already redone" },
-      { id: "mail",    title: "Postcard mail drop",                desc: "Printed and mailed to the homes for you" },
-      { id: "form",    title: "Estimate request page + alerts",    desc: "Homeowners raise a hand; you get notified" },
-      { id: "refresh", title: "Monthly refresh",                   desc: "New homes as the records update" },
-      { id: "booked",  title: "Booked For You",                    desc: "Estimates land on your calendar" }
+      { id: "report",  anchor: true, title: "10 scored homes in one town", desc: "From town assessor and permit records, scored for siding and roof age" },
+      { id: "verify",  title: "Drive-By Verified",   desc: "Street View check on every home. Weeds out houses that were already redone" },
+      { id: "excl",    title: "Your Town Only",      desc: "Town exclusivity. No other crew gets these homes" },
+      { id: "mail",    title: "We Mail It",          desc: "Postcard mail drop. Printed and mailed to the homes for you" },
+      { id: "form",    title: "They Call You",       desc: "Estimate request page + alerts. Homeowners raise a hand; you get notified" },
+      { id: "refresh", title: "Monthly refresh",     desc: "New homes as the records update" }
     ],
 
-    // price is per `cadence`; a monthly plan is compared over 90 days (price x 3).
-    // TODO(noah): confirm which pieces belong in which plan. First guess below.
-    // "booked" is in no plan on purpose: it shows as an add-on.
-    plans: [
-      { id: "list",     name: "List Only",         price: 297, cadence: "month", includes: ["report", "verify"] },
-      { id: "lock",     name: "Territory Lock",    price: 497, cadence: "month", includes: ["report", "verify", "excl", "refresh"] },
-      { id: "pipeline", name: "90-day Pipeline",   price: 997, cadence: "once",  includes: ["report", "verify", "excl", "refresh", "mail", "form"] }
+    // The value ladder, top to bottom. role: free | core | addon | keep | list.
+    // visible:false hides a rung. An addon with no price is hidden too.
+    ladder: [
+      { id: "free", role: "free", tier: "Free first step",
+        name: "2 scored homes in your town", blurb: "Drive by them. See if the list is any good before you pay anything.",
+        cta: { label: "Get 2 free homes", subject: "Send me 2 homes in my town" } },
+
+      { id: "core", role: "core", tier: "Core", name: "Winter Pipeline", term: "90 days",
+        price: 1997,                // TODO(noah): confirm core price
+        foundingPrice: null,        // optional: set a number to show a founding price
+        foundingSpotsLeft: null,    // optional: shown only with foundingPrice. Plain text, not a countdown
+        blurb: "10 exclusive homes in your town, checked, mailed, and set up so homeowners who want an estimate come to you.",
+        includes: ["report", "verify", "excl", "mail", "form", "refresh"] },
+
+      { id: "booked", role: "addon", tier: "Add-on", name: "Booked For You",
+        price: null,                // TODO(noah): set a price to show this rung
+        blurb: "Estimates land on your calendar." },
+
+      { id: "keep", role: "keep", tier: "After 90 days", name: "Keep Your Town", price: 497, cadence: "month",
+        blurb: "Keep the town locked and the list fresh.",
+        includes: ["excl", "refresh"] },
+
+      // Not on the page. Kept so it can come back.
+      { id: "list", role: "list", visible: false, name: "List Only", price: 297, cadence: "month",
+        includes: ["report", "verify"] }
     ],
-    defaultPlan: "pipeline",
-    addOnLabel: "Add-on, ask me",
 
     calculator: {
       avgJob: { min: 5000, max: 60000, step: 500, default: 18000 },
@@ -435,29 +453,32 @@ const OFFERS = [
     // TODO(noah): confirm before going live
     guarantee: {
       mode: "conditional",
-      text: "Work every home on your list. If no homeowner books an estimate in 90 days, your next 90 days are free."
+      name: "The Keep-Mailing Guarantee",
+      text: "If your 10 homes don't produce an estimate request in 90 days, I keep mailing until they do, free."
     },
 
+    // Shown under the hero. Empty list hides it. No names.
+    // TODO(noah): confirm wording is accurate
+    proof: [
+      "First afternoon on the board, a Quiet Corner crew booked two estimates."
+    ],
+
     // status: "open" | "taken". Only mark a town taken when it really is.
-    // TODO(noah): confirm the town list you want to offer.
     towns: [
-      { name: "Ashford", status: "open" },
-      { name: "Brooklyn", status: "open" },
-      { name: "Canterbury", status: "open" },
-      { name: "Chaplin", status: "open" },
-      { name: "Eastford", status: "open" },
-      { name: "Hampton", status: "open" },
       { name: "Killingly", status: "open" },
-      { name: "Plainfield", status: "open" },
+      { name: "Canterbury", status: "open" },
+      { name: "Ashford", status: "open" },
       { name: "Pomfret", status: "open" },
-      { name: "Putnam", status: "open" },
-      { name: "Scotland", status: "open" },
-      { name: "Sterling", status: "open" },
       { name: "Thompson", status: "open" },
-      { name: "Union", status: "open" },
+      { name: "Putnam", status: "open" },
+      { name: "Brooklyn", status: "open" },
+      { name: "Hampton", status: "open" },
       { name: "Windham", status: "open" },
       { name: "Woodstock", status: "open" }
-    ]
+    ],
+
+    // Optional. Leave date empty to hide. Real dates only.
+    mailCutoff: { date: "", template: "Postcards for this winter go out by {date}." }
   }
 ];
 /* ---- end config ---- */
@@ -466,53 +487,77 @@ const OFFERS = [
   const offer = OFFERS[0];
   const $ = (id) => document.getElementById(id);
   const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
-  const cost90 = (p) => (p.cadence === "month" ? p.price * 3 : p.price);
-  const priceLabel = (p) => money(p.price) + (p.cadence === "month" ? " / mo" : "");
   const el = (tag, cls, text) => {
     const e = document.createElement(tag);
     if (cls) e.className = cls;
     if (text !== undefined) e.textContent = text;
     return e;
   };
+  const mailto = (subject) => "mailto:" + SITE.contactEmail +
+    "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(SITE.mailBody);
 
-  // Offer name label
   const m = offer.magic;
   $("offer-name").textContent = m.reason + " " + m.avatar + " " + m.container + ": " + m.goal + " in " + m.interval;
 
-  // Mail link
-  $("cta-mail").href = "mailto:" + SITE.contactEmail +
-    "?subject=" + encodeURIComponent(SITE.mailSubject) +
-    "&body=" + encodeURIComponent(SITE.mailBody);
+  const free = offer.ladder.find((s) => s.role === "free");
+  const core = offer.ladder.find((s) => s.role === "core");
+  if (free) document.querySelectorAll("[data-mail]").forEach((a) => { a.href = mailto(free.cta.subject); });
 
-  // Plans (native radios: arrow keys + focus work for free)
-  let planId = offer.defaultPlan;
-  const planWrap = $("plans");
-  offer.plans.forEach((p) => {
-    const label = el("label", "plan");
-    const input = el("input");
-    input.type = "radio"; input.name = "plan"; input.value = p.id; input.checked = p.id === planId;
-    input.addEventListener("change", () => { planId = p.id; render(); });
-    const face = el("span", "face");
-    const price = el("span", "price", money(p.price));
-    if (p.cadence === "month") price.appendChild(el("small", "", " / mo"));
-    face.append(price, el("span", "pname", p.name));
-    label.append(input, face);
-    planWrap.appendChild(label);
-  });
+  // Calculator runs against what the crew pays for the core offer
+  const hasFounding = core.foundingPrice != null;
+  const corePrice = hasFounding ? core.foundingPrice : core.price;
 
-  // Pieces
-  const pieceEls = {};
-  offer.pieces.forEach((pc) => {
-    const li = el("li", "piece out");
-    li.append(el("span", "dot"));
-    const body = el("div");
-    body.append(el("div", "pt", pc.title), el("div", "pd", pc.desc));
-    const status = el("span", "sr");
-    const avail = el("div", "avail");
-    li.append(body, avail);
-    body.prepend(status);
-    $("pieces").appendChild(li);
-    pieceEls[pc.id] = { li, status, avail };
+  // Proof
+  if (offer.proof && offer.proof.length) {
+    offer.proof.forEach((t) => $("proof-list").appendChild(el("p", "", t)));
+    $("proof").hidden = false;
+  }
+
+  // Ladder
+  const pieceById = {};
+  offer.pieces.forEach((p) => { pieceById[p.id] = p; });
+  const shown = offer.ladder.filter((s) => s.visible !== false && s.role !== "list" && !(s.role === "addon" && s.price == null));
+  shown.forEach((s, i) => {
+    const li = el("li", "rung " + s.role);
+    li.appendChild(el("p", "tier", "Step " + (i + 1) + " · " + s.tier));
+    const head = el("div", "rname");
+    head.appendChild(el("h3", "", s.name));
+    const price = s.role === "core" ? corePrice : s.price;
+    if (s.role !== "free" && price != null) {
+      const pe = el("span", "rprice", money(price));
+      const unit = s.cadence === "month" ? " / mo" : s.role === "core" ? " / " + s.term : s.role === "addon" ? " add-on" : "";
+      if (unit) pe.appendChild(el("small", "", unit));
+      head.appendChild(pe);
+    }
+    li.appendChild(head);
+    if (s.blurb) li.appendChild(el("p", "blurb", s.blurb));
+    if (s.role === "core" && hasFounding) {
+      let t = "Founding price. Regular price " + money(core.price) + ".";
+      if (core.foundingSpotsLeft != null) t = "Founding price, " + core.foundingSpotsLeft + " spots left. Regular price " + money(core.price) + ".";
+      li.appendChild(el("p", "note", t));
+    }
+    if (s.role === "free") {
+      const a = el("a", "btn primary", s.cta.label);
+      a.href = mailto(s.cta.subject);
+      li.appendChild(a);
+    }
+    if (s.role === "core") {
+      const ul = el("ul", "pieces");
+      s.includes.forEach((id) => {
+        const pc = pieceById[id];
+        const row = el("li", "piece" + (pc.anchor ? " anchor" : ""));
+        row.appendChild(el("span", "dot"));
+        const body = el("div");
+        body.append(el("span", "sr", "Included. "), el("div", "pt", pc.title), el("div", "pd", pc.desc));
+        row.appendChild(body);
+        ul.appendChild(row);
+      });
+      li.appendChild(ul);
+    }
+    if (s.role === "keep" && s.includes) {
+      li.appendChild(el("p", "covers", "Covers: " + s.includes.map((id) => pieceById[id].title).join(" and ") + "."));
+    }
+    $("ladder").appendChild(li);
   });
 
   // Calculator inputs
@@ -540,27 +585,11 @@ const OFFERS = [
   wire(close, cfg.close);
 
   function render() {
-    const plan = offer.plans.find((p) => p.id === planId);
     const avg = parseFloat(job.range.value);
     const closed = parseInt(close.range.value, 10);
-
-    // Pieces
-    offer.pieces.forEach((pc) => {
-      const r = pieceEls[pc.id];
-      const inPlan = plan.includes.indexOf(pc.id) !== -1;
-      r.li.className = "piece " + (inPlan ? "in" : "out");
-      r.status.textContent = inPlan ? "Included. " : "Not included. ";
-      if (inPlan) { r.avail.textContent = ""; r.avail.hidden = true; return; }
-      const host = offer.plans.find((p) => p.includes.indexOf(pc.id) !== -1);
-      r.avail.textContent = host ? "available on " + host.name : offer.addOnLabel;
-      r.avail.hidden = false;
-    });
-
-    // Numbers
-    const total = cost90(plan);
-    const times = avg / total;
-    const breakEven = Math.ceil((total / avg) * 10 - 1e-9) / 10; // round up to 1 decimal, never show 0.0
-    const shown = Math.max(0.1, breakEven);
+    const times = avg / corePrice;
+    const breakEven = corePrice / avg;
+    const be = Math.max(0.1, Math.round(breakEven * 10) / 10);
     const covers = times >= 1;
     const timesText = times >= 10 ? String(Math.round(times)) : (Math.round(times * 10) / 10).toString();
 
@@ -575,22 +604,21 @@ const OFFERS = [
     }
 
     $("out-be").textContent = "";
-    $("out-be").append("Jobs you'd need to break even: ", el("b", "", shown.toFixed(1)));
-    $("out-be").append(plan.cadence === "month" ? " (" + money(total) + " over 90 days)" : "");
+    $("out-be").append("Jobs you'd need to break even: ", el("b", "", be.toFixed(1)));
 
     // Bars share one scale so the price visibly shrinks next to a job
-    const scale = Math.max(avg, total);
+    const scale = Math.max(avg, corePrice);
     $("bar-job").style.width = (avg / scale * 100) + "%";
-    $("bar-cost").style.width = (total / scale * 100) + "%";
+    $("bar-cost").style.width = (corePrice / scale * 100) + "%";
     $("bar-job-v").textContent = money(avg);
     $("bar-cost-l").textContent = "";
-    $("bar-cost-l").append(plan.name + (plan.cadence === "month" ? ", 90 days" : ""), el("b", "", money(total)));
+    $("bar-cost-l").append(core.name + ", " + core.term, el("b", "", money(corePrice)));
 
     const bad = $("out-bad");
     bad.classList.toggle("show", breakEven > 1);
     bad.textContent = breakEven > 1
-      ? "At these numbers this plan costs more than one average job: you'd need about " + shown.toFixed(1) +
-        " jobs to break even. Try a smaller plan, or skip it."
+      ? "At these numbers this plan costs more than one average job: you'd need about " + be.toFixed(1) +
+        " jobs to break even. Start with the free 2 homes and see if it's worth it."
       : "";
 
     $("out-quiet").textContent = "From " + m.goal.toLowerCase() +
@@ -601,6 +629,7 @@ const OFFERS = [
   // Guarantee
   const g = offer.guarantee;
   if (g && g.mode !== "none" && g.text) {
+    if (g.name) $("guarantee-name").textContent = g.name;
     $("guarantee-text").textContent = g.text;
     $("guarantee").hidden = false;
   }
@@ -614,6 +643,11 @@ const OFFERS = [
     $("towns").appendChild(li);
   });
   $("towns-open").textContent = open + " of " + offer.towns.length + " towns open";
+  const mc = offer.mailCutoff;
+  if (mc && mc.date) {
+    $("cutoff").textContent = mc.template.replace("{date}", mc.date);
+    $("cutoff").hidden = false;
+  }
 
   // Theme toggle (same effective-scheme logic as the lead board)
   $("theme-toggle").addEventListener("click", () => {
