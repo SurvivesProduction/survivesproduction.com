@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Winter Siding Work From Town Records | Survives Production</title>
-<meta name="description" content="Homes that need siding or roofing, found in your town's own records, checked on Street View, mailed postcards. You only talk to homeowners who asked for an estimate. One crew per town.">
+<meta name="description" content="Get 2 scored homes in your Quiet Corner town free. Drive by them. Then we mail the rest and homeowners ask you for estimates. One crew per town.">
 <meta name="theme-color" content="#0E1A2B">
 <link rel="canonical" href="https://survivesproduction.com/offer">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%230E1A2B'/%3E%3Cpath d='M7.5 13.5l3.5 3.5 7.5-8' fill='none' stroke='%233FD48D' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://survivesproduction.com/offer">
 <meta property="og:title" content="Winter siding work, found in your town's own records">
-<meta property="og:description" content="Homes that need siding or roofing, found in public town records, checked on Street View, and mailed a postcard. You only talk to homeowners who asked for an estimate.">
+<meta property="og:description" content="Get 2 scored homes in your Quiet Corner town free. Drive by them. Then we mail the rest and homeowners ask you for estimates. One crew per town.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@survivesprod">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -262,7 +262,7 @@ footer.site a:hover { color: var(--ink); }
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <p class="offer-name"><b>Offer</b><span id="offer-name">Winter Quiet Corner Siding Crew Pipeline: 10 Exclusive Homes in 30 Days</span></p>
+      <p class="offer-name"><b>Offer</b><span id="offer-name">Winter Quiet Corner Siding Crew Pipeline: 10 Exclusive Homes Mailed in 14 Days</span></p>
       <h1>Siding crews go quiet every winter.</h1>
       <p class="lede">Get estimates on your calendar this winter, from homeowners in your town who asked for one.</p>
       <p class="how">I find the homes in public town records, check each one, and mail the homeowners. You show up and do the estimate.</p>
@@ -398,12 +398,12 @@ const OFFERS = [
   {
     id: "crew-pipeline",
 
-    // Offer name label = "<reason> <avatar> <container>: <goal> in <interval>"
+    // Offer name label = "<reason> <avatar> <container>: <goal> <interval>"
     magic: {
       reason: "Winter",
       avatar: "Quiet Corner Siding Crew",
       goal: "10 Exclusive Homes",
-      interval: "30 Days",
+      interval: "Mailed in 14 Days",  // TODO(noah): confirm turnaround
       container: "Pipeline"
     },
 
@@ -429,6 +429,7 @@ const OFFERS = [
         foundingPrice: null,        // optional: set a number to show a founding price
         foundingSpotsLeft: null,    // optional: shown only with foundingPrice. Plain text, not a countdown
         blurb: "10 exclusive homes in your town, checked, mailed, and set up so homeowners who want an estimate come to you.",
+        guaranteeLine: "90 days of the Keep-Mailing Guarantee.",  // shown only when guarantee.mode is not "none"
         includes: ["report", "verify", "excl", "mail", "form", "refresh"] },
 
       { id: "booked", role: "addon", tier: "Add-on", name: "Booked For You",
@@ -497,7 +498,7 @@ const OFFERS = [
     "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(SITE.mailBody);
 
   const m = offer.magic;
-  $("offer-name").textContent = m.reason + " " + m.avatar + " " + m.container + ": " + m.goal + " in " + m.interval;
+  $("offer-name").textContent = m.reason + " " + m.avatar + " " + m.container + ": " + m.goal + " " + m.interval;
 
   const free = offer.ladder.find((s) => s.role === "free");
   const core = offer.ladder.find((s) => s.role === "core");
@@ -531,6 +532,9 @@ const OFFERS = [
     }
     li.appendChild(head);
     if (s.blurb) li.appendChild(el("p", "blurb", s.blurb));
+    if (s.role === "core" && s.guaranteeLine && offer.guarantee && offer.guarantee.mode !== "none") {
+      li.appendChild(el("p", "covers", s.guaranteeLine));
+    }
     if (s.role === "core" && hasFounding) {
       let t = "Founding price. Regular price " + money(core.price) + ".";
       if (core.foundingSpotsLeft != null) t = "Founding price, " + core.foundingSpotsLeft + " spots left. Regular price " + money(core.price) + ".";
