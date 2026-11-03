@@ -1,0 +1,58 @@
+{
+  "asOf": "2026-11-03",
+  "price": { "founding": 1497, "after": 1997, "termDays": 90, "keepTerritoryMonthly": 497, "keepTerritoryHomesPerMonth": 25 },
+  "batch": { "homesPer90Days": 75, "cardsPerHome": 3, "firstCardsWithinDays": 14, "cardDays": [14, 35, 56] },
+  "guarantee": { "minRequests": 2, "checkDaysAfterFirstCards": 90, "refundDaysAfterFirstCards": 180, "refundWithinDays": 14, "respondWithinBusinessDays": 1 },
+  "foundingTerritoriesTotal": 3,
+  "foundingDeadline": null,
+  "assumptions": {
+    "reachableShare": 0.496,
+    "reachableShareBasis": "Tool 4 parcels with a known build year and a reachable owner: 794 of 1,600 (Sep 16, 2026)",
+    "mailableShare": 0.10,
+    "mailableShareBasis": "Guess. Being measured with a Street View check of the top 200 homes in one territory.",
+    "requestRatePerCardDefault": 0.015,
+    "requestRateBenchmark": "ANA direct-mail benchmark for prospect lists: about 2–5% response. An estimate request is a heavier ask, so we plan on 1–2%.",
+    "requestRateBenchmarkUrl": "https://www.4over4.com/statistics/direct-mail-response-rate-benchmarks"
+  },
+  "territories": [
+    { "id": "east", "name": "East", "phase": "founding", "status": "open", "towns": ["Killingly", "Brooklyn", "Canterbury"] },
+    { "id": "north", "name": "North", "phase": "founding", "status": "open", "towns": ["Thompson", "Woodstock", "Putnam"] },
+    { "id": "west", "name": "West", "phase": "founding", "status": "open", "towns": ["Windham", "Hampton", "Pomfret", "Chaplin"] },
+    { "id": "southeast", "name": "Southeast", "phase": "expansion", "status": "building", "towns": ["Plainfield", "Sterling", "Voluntown"] },
+    { "id": "south", "name": "South", "phase": "expansion", "status": "building", "towns": ["Griswold", "Lisbon", "Sprague", "Scotland"] },
+    { "id": "northwest", "name": "Northwest", "phase": "expansion", "status": "building", "towns": ["Ashford", "Eastford", "Union", "Willington"] }
+  ],
+  "towns": {
+    "Killingly":  { "singleFamily": 6186, "permitData": true,  "scraped": true },
+    "Brooklyn":   { "singleFamily": 2501, "permitData": true,  "scraped": true },
+    "Canterbury": { "singleFamily": 1809, "permitData": false, "scraped": true },
+    "Thompson":   { "singleFamily": 2982, "permitData": false, "scraped": true },
+    "Woodstock":  { "singleFamily": 3170, "permitData": true,  "scraped": true },
+    "Putnam":     { "singleFamily": 2069, "permitData": false, "scraped": false },
+    "Windham":    { "singleFamily": 3822, "permitData": false, "scraped": false },
+    "Hampton":    { "singleFamily": 735,  "permitData": false, "scraped": true },
+    "Pomfret":    { "singleFamily": 1230, "permitData": false, "scraped": true },
+    "Chaplin":    { "singleFamily": 763,  "permitData": false, "scraped": false },
+    "Plainfield": { "singleFamily": 3945, "permitData": false, "scraped": false },
+    "Sterling":   { "singleFamily": 1164, "permitData": false, "scraped": false },
+    "Voluntown":  { "singleFamily": 1135, "permitData": false, "scraped": false },
+    "Griswold":   { "singleFamily": 3214, "permitData": false, "scraped": false },
+    "Lisbon":     { "singleFamily": 1523, "permitData": false, "scraped": false },
+    "Sprague":    { "singleFamily": 723,  "permitData": false, "scraped": false },
+    "Scotland":   { "singleFamily": 597,  "permitData": false, "scraped": false },
+    "Ashford":    { "singleFamily": 1361, "permitData": true,  "scraped": true },
+    "Eastford":   { "singleFamily": 770,  "permitData": false, "scraped": false },
+    "Union":      { "singleFamily": 383,  "permitData": false, "scraped": false },
+    "Willington": { "singleFamily": 1714, "permitData": false, "scraped": false }
+  },
+  "townCountsSource": "CT statewide CAMA and Parcel Layer, single-family use codes, queried Nov 3, 2026. Killingly, Ashford, Eastford, Scotland and Voluntown report only a broad Residential code, so their counts may include some 2-family homes.",
+  "townCountsSourceUrl": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer/FeatureServer/0",
+  "trialLog": {
+    "updated": null,
+    "channel": null,
+    "homesScored": null, "homesVerified": null, "cardsMailed": null,
+    "estimateRequests": null, "estimatesDone": null, "jobsWon": null,
+    "note": null
+  },
+  "compliance": { "salespersonRegistration": null, "privacyNoticeUrl": "/privacy/" }
+}

@@ -1,0 +1,60 @@
+/* Shared shell: tokens, header, footer, theme. Used by every page.
+   Tokens are --sp-* so they never collide with a page's own variables.
+   Pages that want the brand look put class "sp-brand" on <body>. */
+:root {
+  --sp-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --sp-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --sp-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --sp-bg: #0E1A2B; --sp-raised: #13233A; --sp-line: #233853;
+  --sp-ink: #E9EEF4; --sp-dim: #98AAC0;
+  --sp-red: #F0545A; --sp-green: #3FD48D; --sp-on-red: #1A0A0C;
+  color-scheme: dark;
+}
+html[data-theme="light"] {
+  --sp-bg: #F4F6F9; --sp-raised: #FFFFFF; --sp-line: #D3DBE6;
+  --sp-ink: #0E1A2B; --sp-dim: #4F6079;
+  --sp-red: #D8353C; --sp-green: #11804F; --sp-on-red: #FFFFFF;
+  color-scheme: light;
+}
+body.sp-brand {
+  --bg: var(--sp-bg); --raised: var(--sp-raised); --line: var(--sp-line);
+  --ink: var(--sp-ink); --dim: var(--sp-dim);
+  --red: var(--sp-red); --green: var(--sp-green); --on-red: var(--sp-on-red);
+  --display: var(--sp-display); --body: var(--sp-body); --mono: var(--sp-mono);
+  margin: 0; background: var(--bg); color: var(--ink);
+}
+
+.sp-wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.sp-top, .sp-foot {
+  display: block; background: var(--sp-bg); color: var(--sp-ink);
+  font-family: var(--sp-body); font-size: 1rem; line-height: 1.4; font-stretch: 100%;
+}
+.sp-top { border-bottom: 1px solid var(--sp-line); }
+.sp-top .sp-wrap { display: flex; align-items: center; justify-content: space-between; gap: 4px 16px; flex-wrap: wrap; padding-block: 8px; }
+.sp-mark { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--sp-ink); min-height: 44px; }
+.sp-mark svg { flex: none; }
+.sp-mark span { font-family: var(--sp-display); font-weight: 800; font-size: 1.15rem; font-stretch: 72%; letter-spacing: 0.01em; }
+.sp-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 0 4px; }
+.sp-nav a, .sp-nav button {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px;
+  font: inherit; font-size: 0.95rem; color: var(--sp-dim); text-decoration: none; background: none; border: 0; cursor: pointer;
+}
+.sp-nav a:hover, .sp-nav button:hover { color: var(--sp-ink); }
+.sp-nav a[aria-current="page"] { color: var(--sp-ink); text-decoration: underline; text-decoration-color: var(--sp-green); text-decoration-thickness: 2px; text-underline-offset: 8px; }
+.sp-nav .sp-theme { border: 1px solid var(--sp-line); border-radius: 999px; min-height: 44px; padding: 0 14px; margin-left: 6px; font-size: 0.85rem; }
+.sp-top a:focus-visible, .sp-top button:focus-visible, .sp-foot a:focus-visible {
+  outline: 2px solid var(--sp-green); outline-offset: 2px; border-radius: 4px;
+}
+
+.sp-foot { border-top: 1px solid var(--sp-line); color: var(--sp-dim); font-size: 0.9rem; }
+.sp-foot .sp-wrap { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-block: 22px; }
+.sp-foot strong { color: var(--sp-ink); font-weight: 650; }
+.sp-foot p { margin: 4px 0 0; }
+.sp-foot nav { display: flex; flex-wrap: wrap; gap: 0 4px; }
+.sp-foot a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 8px; color: var(--sp-dim); text-decoration: none; }
+.sp-foot a:hover { color: var(--sp-ink); }
+@media (max-width: 480px) { .sp-mark span { font-size: 1.05rem; } .sp-nav a { padding: 0 8px; } }
