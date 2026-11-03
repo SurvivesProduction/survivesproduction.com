@@ -49,7 +49,7 @@
     "updated": "2026-10-11",
     "channel": "Phone calls off the job board, before we switched to mail",
     "homesScored": null, "homesVerified": null, "cardsMailed": 0,
-    "estimateRequests": null, "estimatesDone": 2, "jobsWon": null,
+    "estimateRequests": null, "estimatesDone": 2, "jobsWon": 0,
     "note": "Two estimates booked in one afternoon with one crew. We no longer cold-call; current outreach is postcards."
   },
   "compliance": { "salespersonRegistration": null, "privacyNoticeUrl": "/privacy/" }
