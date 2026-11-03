@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Winter Siding Work From Town Records | Survives Production</title>
+<meta name="description" content="Homes that need siding or roofing, found in your town's own records, checked on Street View, mailed postcards. You only talk to homeowners who asked for an estimate. One crew per town.">
+<meta name="theme-color" content="#0E1A2B">
+<link rel="canonical" href="https://survivesproduction.com/offer">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%230E1A2B'/%3E%3Cpath d='M7.5 13.5l3.5 3.5 7.5-8' fill='none' stroke='%233FD48D' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://survivesproduction.com/offer">
+<meta property="og:title" content="Winter siding work, found in your town's own records">
+<meta property="og:description" content="Homes that need siding or roofing, found in public town records, checked on Street View, and mailed a postcard. You only talk to homeowners who asked for an estimate.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@survivesprod">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Same brand tokens as the home page (dark navy, red = action, green = good).
+   Light mode follows the system setting; the toggle in the header overrides it. */
+:root {
+  --bg: #0E1A2B;
+  --raised: #13233A;
+  --line: #233853;
+  --ink: #E9EEF4;
+  --dim: #98AAC0;
+  --red: #F0545A;
+  --green: #3FD48D;
+  --on-red: #1A0A0C;
+  --on-green: #06241A;
+  --bad-bg: rgba(240, 84, 90, 0.12);
+  --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --measure: 62ch;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #F4F6F9; --raised: #FFFFFF; --line: #D3DBE6; --ink: #0E1A2B; --dim: #4F6079;
+    --red: #D8353C; --green: #11804F; --on-red: #FFFFFF; --on-green: #FFFFFF;
+    --bad-bg: rgba(216, 53, 60, 0.09);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #F4F6F9; --raised: #FFFFFF; --line: #D3DBE6; --ink: #0E1A2B; --dim: #4F6079;
+  --red: #D8353C; --green: #11804F; --on-red: #FFFFFF; --on-green: #FFFFFF;
+  --bad-bg: rgba(216, 53, 60, 0.09);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-stretch: 100%; font-size: 1.0625rem; line-height: 1.6;
+  overflow-wrap: break-word;
+}
+a { color: inherit; }
+a:focus-visible, .btn:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--green); outline-offset: 3px; border-radius: 2px;
+}
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+
+/* Header */
+.top { border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px 16px; padding-block: 18px; flex-wrap: wrap; }
+.mark { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.mark svg { flex: none; }
+.mark span { font-family: var(--display); font-weight: 800; font-size: 1.15rem; font-stretch: 72%; letter-spacing: 0.01em; }
+.top nav { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
+.top nav a { text-decoration: none; color: var(--dim); font-size: 0.95rem; }
+.top nav a:hover, .top nav a[aria-current="page"] { color: var(--ink); }
+.top nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--green); text-underline-offset: 6px; text-decoration-thickness: 2px; }
+#theme-toggle {
+  font: inherit; font-size: 0.85rem; color: var(--dim); background: none; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px;
+}
+#theme-toggle:hover { color: var(--ink); border-color: var(--dim); }
+
+/* Type + buttons */
+h1 {
+  font-family: var(--display); font-weight: 850; font-stretch: 64%;
+  font-size: clamp(2.3rem, 5.4vw, 3.6rem); line-height: 1; letter-spacing: -0.01em;
+  margin: 0 0 22px; text-wrap: balance;
+}
+h2 {
+  font-family: var(--display); font-weight: 800; font-stretch: 70%;
+  font-size: clamp(2rem, 4vw, 2.9rem); line-height: 1.02; margin: 0 0 14px; text-wrap: balance;
+}
+h3 { font-family: var(--display); font-weight: 750; font-stretch: 85%; font-size: 1.25rem; line-height: 1.2; margin: 0 0 6px; }
+.lede { font-size: 1.2rem; max-width: 46ch; margin: 0 0 30px; }
+.intro { color: var(--dim); max-width: var(--measure); margin: 0 0 36px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 20px; font-weight: 650; font-size: 1rem; text-decoration: none;
+  border-radius: 6px; border: 1px solid var(--line);
+}
+.btn.primary { background: var(--red); border-color: var(--red); color: var(--on-red); }
+.btn.primary:hover { filter: brightness(1.08); }
+.btn.ghost:hover { border-color: var(--dim); }
+.mono { font-family: var(--mono); }
+
+/* Hero */
+.hero .wrap { padding-block: clamp(44px, 7vw, 84px) clamp(40px, 6vw, 72px); }
+.offer-name {
+  display: inline-block; font-family: var(--mono); font-size: 0.8rem; color: var(--dim);
+  border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; margin: 0 0 22px;
+}
+.offer-name b { color: var(--green); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-right: 8px; }
+
+/* Sections */
+section.band { border-top: 1px solid var(--line); }
+section.band > .wrap { padding-block: clamp(48px, 7vw, 84px); }
+
+/* How it works */
+.steps { list-style: none; margin: 0 0 28px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; counter-reset: step; }
+.steps li {
+  counter-increment: step; position: relative;
+  background: var(--raised); border: 1px solid var(--line); border-radius: 10px; padding: 18px 18px 20px;
+}
+.steps li::before {
+  content: counter(step); display: grid; place-items: center; width: 34px; height: 34px; margin-bottom: 12px;
+  border-radius: 50%; border: 2px solid var(--green); color: var(--green);
+  font-family: var(--display); font-weight: 800; font-size: 1.1rem;
+}
+.steps li:not(:last-child)::after {
+  content: ""; position: absolute; top: 34px; left: calc(18px + 34px + 8px); right: -16px; height: 2px;
+  background: linear-gradient(90deg, var(--line), transparent); z-index: 1;
+}
+.steps p { margin: 0; font-size: 0.98rem; }
+.only { font-family: var(--display); font-weight: 800; font-stretch: 75%; font-size: 1.5rem; color: var(--green); margin: 0; }
+
+/* Stack */
+.stack-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 28px; align-items: start; }
+.card { background: var(--raised); border: 1px solid var(--line); border-radius: 10px; padding: 20px; }
+.card h3 { margin-bottom: 14px; }
+fieldset { border: 0; margin: 0 0 20px; padding: 0; min-width: 0; }
+legend { padding: 0; font-family: var(--mono); font-size: 0.8rem; color: var(--dim); margin-bottom: 8px; }
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.plan { position: relative; display: block; cursor: pointer; }
+.plan input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.plan .face {
+  display: flex; flex-direction: column; gap: 2px; height: 100%;
+  border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--bg);
+}
+.plan .price { font-family: var(--display); font-weight: 800; font-stretch: 80%; font-size: 1.3rem; line-height: 1.1; }
+.plan .price small { font-family: var(--mono); font-weight: 400; font-size: 0.75rem; color: var(--dim); }
+.plan .pname { font-size: 0.9rem; color: var(--dim); }
+.plan:hover .face { border-color: var(--dim); }
+.plan input:checked + .face { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); background: color-mix(in srgb, var(--green) 10%, var(--bg)); }
+.plan input:checked + .face .pname { color: var(--ink); }
+.plan input:focus-visible + .face { outline: 2px solid var(--green); outline-offset: 3px; }
+
+.pieces { list-style: none; margin: 0; padding: 0; }
+.piece { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.piece:first-child { border-top: 0; padding-top: 0; }
+.piece .dot { grid-row: span 2; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; border: 2px solid var(--line); }
+.piece.in .dot { border-color: var(--green); background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M5.5 11.5l3.5 3.5 7-8' fill='none' stroke='%2306241A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.piece .pt { font-weight: 650; line-height: 1.3; }
+.piece .pd { color: var(--dim); font-size: 0.93rem; line-height: 1.45; }
+.piece.out .pt, .piece.out .pd { opacity: 0.55; }
+.piece .avail { grid-column: 2; font-family: var(--mono); font-size: 0.75rem; color: var(--dim); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Calculator */
+.field { margin-bottom: 20px; }
+.field label { display: block; font-weight: 600; font-size: 0.97rem; margin-bottom: 8px; line-height: 1.35; }
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) 7.5rem; gap: 14px; align-items: center; }
+input[type=range] { width: 100%; accent-color: var(--green); margin: 0; height: 28px; }
+input[type=number] {
+  width: 100%; font: inherit; font-family: var(--mono); font-size: 1rem; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px;
+}
+.result { border-top: 1px solid var(--line); padding-top: 20px; }
+.big { font-family: var(--display); font-weight: 850; font-stretch: 72%; font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.05; margin: 0 0 8px; text-wrap: balance; }
+.big .n { color: var(--green); }
+.be { margin: 0 0 14px; color: var(--dim); }
+.be b { color: var(--ink); font-family: var(--mono); font-weight: 600; }
+.quiet { margin: 14px 0 0; font-size: 0.9rem; color: var(--dim); }
+.bars { display: grid; gap: 10px; margin: 18px 0 0; }
+.bar-row { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 12px; align-items: center; font-size: 0.88rem; }
+.bar-row .lbl { color: var(--dim); line-height: 1.25; }
+.bar-row .lbl b { display: block; color: var(--ink); font-family: var(--mono); font-weight: 600; }
+.track { height: 22px; background: color-mix(in srgb, var(--line) 55%, transparent); border-radius: 4px; overflow: hidden; }
+.fill { height: 100%; border-radius: 4px; min-width: 4px; transition: width 0.25s ease-out; }
+.fill.job { background: var(--green); }
+.fill.cost { background: var(--red); }
+@media (prefers-reduced-motion: reduce) { .fill { transition: none; } }
+.bad { display: none; margin: 14px 0 0; padding: 12px 14px; border: 1px solid var(--red); background: var(--bad-bg); border-radius: 8px; font-size: 0.95rem; }
+.bad.show { display: block; }
+
+/* Guarantee */
+.guarantee { border-left: 4px solid var(--green); padding: 4px 0 4px 22px; max-width: 46rem; }
+.guarantee p { font-family: var(--display); font-weight: 700; font-stretch: 85%; font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.25; margin: 0; }
+
+/* Towns */
+.towns { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.town { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; font-size: 0.95rem; background: var(--raised); }
+.town::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--green); }
+.town.taken { color: var(--dim); text-decoration: line-through; }
+.town.taken::before { background: var(--dim); }
+.town .st { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); text-decoration: none; display: inline-block; }
+.legend { font-family: var(--mono); font-size: 0.8rem; color: var(--dim); margin: 0; }
+
+/* About + CTA */
+.about p { margin: 0 0 16px; max-width: var(--measure); }
+.contact h2 { max-width: 20ch; }
+.handle { font-family: var(--mono); font-size: 0.95rem; margin-top: 18px; user-select: all; }
+
+footer.site { border-top: 1px solid var(--line); color: var(--dim); font-size: 0.9rem; }
+footer.site .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 26px; }
+footer.site nav { display: flex; gap: 20px; flex-wrap: wrap; }
+footer.site a { text-decoration: none; }
+footer.site a:hover { color: var(--ink); }
+
+@media (max-width: 960px) {
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps li:nth-child(2)::after { display: none; }
+  .stack-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .plans { grid-template-columns: minmax(0, 1fr); }
+  .plan .face { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .bar-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .bar-row .lbl b { display: inline; margin-left: 6px; }
+}
+@media (max-width: 520px) {
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .steps li::after { display: none; }
+  .top nav { gap: 14px; }
+  .card { padding: 16px; }
+  .pair { grid-template-columns: minmax(0, 1fr) 6.5rem; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="/" aria-label="Survives Production home">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="6" fill="none" stroke="#3FD48D" stroke-width="2"/><path d="M7.5 13.5l3.5 3.5 7.5-8" fill="none" stroke="#3FD48D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Survives Production</span>
+    </a>
+    <nav aria-label="Pages">
+      <a href="/">Home</a>
+      <a href="/leads">Lead board</a>
+      <a href="/offer" aria-current="page">Offer</a>
+      <button type="button" id="theme-toggle" aria-label="Switch between light and dark">Light / Dark</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="offer-name"><b>Offer</b><span id="offer-name">Winter Quiet Corner Siding Crew Pipeline: 10 Exclusive Homes in 30 Days</span></p>
+      <h1>Winter siding work, found in your town's own records</h1>
+      <p class="lede">For small exterior crews in Connecticut's Quiet Corner. I find the homes that need siding or roofing, and homeowners who want an estimate come to you.</p>
+      <div class="actions">
+        <a class="btn primary" href="#stack">See what you get</a>
+        <a class="btn ghost" href="/leads">See a sample board</a>
+      </div>
+      <noscript><p class="intro" style="margin-top:24px">The plan picker and price calculator below need JavaScript. Email hello@survivesproduction.com and I'll send the numbers.</p></noscript>
+    </div>
+  </section>
+
+  <section class="band" id="how">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <p class="intro">No cold calls, no guessing. Every home on your list comes out of public records, and I look at each one before it gets a postcard.</p>
+      <ol class="steps">
+        <li><h3>Records</h3><p>I pull your town's assessor and permit records and score every home for siding and roof age.</p></li>
+        <li><h3>Street View</h3><p>I check each top home on Street View and drop the ones already redone.</p></li>
+        <li><h3>Postcards</h3><p>Postcards go out to those homes. Homeowners who want an estimate fill out a short page.</p></li>
+        <li><h3>Your estimate</h3><p>You get notified and go do the estimate.</p></li>
+      </ol>
+      <p class="only">You only talk to homeowners who asked.</p>
+    </div>
+  </section>
+
+  <section class="band" id="stack">
+    <div class="wrap">
+      <h2>What you get, and what it costs next to one job</h2>
+      <p class="intro">Pick a plan to see what's in it. Then put in your own numbers. Nothing here is a promise of how many jobs you'll win.</p>
+
+      <div class="stack-grid">
+        <div class="card" aria-labelledby="pieces-h">
+          <h3 id="pieces-h">The pieces</h3>
+          <fieldset>
+            <legend>Plan</legend>
+            <div class="plans" id="plans"></div>
+          </fieldset>
+          <ul class="pieces" id="pieces"></ul>
+        </div>
+
+        <div class="card" aria-labelledby="nums-h">
+          <h3 id="nums-h">Your numbers</h3>
+          <div class="field">
+            <label for="job-num">Your average siding job ($)</label>
+            <div class="pair">
+              <input type="range" id="job-range" aria-label="Average siding job, slider">
+              <input type="number" id="job-num" inputmode="numeric">
+            </div>
+          </div>
+          <div class="field">
+            <label for="close-num">Out of 10 estimates, how many do you usually close?</label>
+            <div class="pair">
+              <input type="range" id="close-range" aria-label="Estimates closed out of 10, slider">
+              <input type="number" id="close-num" inputmode="numeric">
+            </div>
+          </div>
+          <div class="result" aria-live="polite">
+            <p class="big" id="out-big"></p>
+            <p class="be" id="out-be"></p>
+            <div class="bars" id="bars" aria-hidden="true">
+              <div class="bar-row"><span class="lbl">One average job<b id="bar-job-v"></b></span><div class="track"><div class="fill job" id="bar-job"></div></div></div>
+              <div class="bar-row"><span class="lbl" id="bar-cost-l"></span><div class="track"><div class="fill cost" id="bar-cost"></div></div></div>
+            </div>
+            <p class="bad" id="out-bad"></p>
+            <p class="quiet" id="out-quiet"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="guarantee" hidden>
+    <div class="wrap">
+      <h2>If it doesn't work</h2>
+      <div class="guarantee"><p id="guarantee-text"></p></div>
+    </div>
+  </section>
+
+  <section class="band" id="towns-band">
+    <div class="wrap">
+      <h2>One crew per town</h2>
+      <p class="intro">I only work with one crew in a town, first come. Once a town is taken, those homes don't go to anyone else.</p>
+      <ul class="towns" id="towns"></ul>
+      <p class="legend"><span id="towns-open"></span></p>
+    </div>
+  </section>
+
+  <section class="band about" id="why">
+    <div class="wrap">
+      <h2>Why this exists</h2>
+      <p>I'm Noah, a software engineer who builds data tools for small trades businesses. Survives Production is where I show the builds.</p>
+      <p>Town records show which houses are due for work before anyone has called anyone. That beats waiting on word of mouth, and it beats buying a shared lead list that three other crews got the same morning.</p>
+      <p>The sample board at <a href="/leads">/leads</a> is real scored data with the homes anonymized, so you can see what the scoring looks like.</p>
+    </div>
+  </section>
+
+  <section class="band contact" id="contact">
+    <div class="wrap">
+      <h2>Is your town still open?</h2>
+      <p class="intro">Send me your name, your town and the best number to reach you. I'll tell you if it's open and what the first list would look like.</p>
+      <div class="actions">
+        <a class="btn primary" id="cta-mail" href="mailto:hello@survivesproduction.com?subject=Is%20my%20town%20open%3F">Ask if your town is open</a>
+        <a class="btn ghost" href="/leads">See a sample board</a>
+      </div>
+      <p class="handle">hello@survivesproduction.com</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>Survives Production</span>
+    <nav aria-label="Elsewhere">
+      <a href="/">Home</a>
+      <a href="/leads">Lead board</a>
+      <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://github.com/SurvivesProduction" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:hello@survivesproduction.com">Email</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ---- Offer config: change numbers and wording here, not in the markup ---- */
+const SITE = {
+  contactEmail: "hello@survivesproduction.com",
+  mailSubject: "Is my town open?",
+  mailBody: "Name:\nTown:\nBest number:\n"
+};
+
+// Only offers[0] renders today. A second offer would be another entry here.
+const OFFERS = [
+  {
+    id: "crew-pipeline",
+
+    // Offer name = "<reason> <avatar> <container>: <goal> in <interval>"
+    magic: {
+      reason: "Winter",
+      avatar: "Quiet Corner Siding Crew",
+      goal: "10 Exclusive Homes",
+      interval: "30 Days",
+      container: "Pipeline"
+    },
+
+    pieces: [
+      { id: "report",  title: "10 scored homes in one town",       desc: "From town assessor and permit records, scored for siding and roof age" },
+      { id: "excl",    title: "Town exclusivity",                  desc: "No other crew gets these homes" },
+      { id: "verify",  title: "Street View check on every home",   desc: "Weeds out houses that were already redone" },
+      { id: "mail",    title: "Postcard mail drop",                desc: "Printed and mailed to the homes for you" },
+      { id: "form",    title: "Estimate request page + alerts",    desc: "Homeowners raise a hand; you get notified" },
+      { id: "refresh", title: "Monthly refresh",                   desc: "New homes as the records update" },
+      { id: "booked",  title: "Booked For You",                    desc: "Estimates land on your calendar" }
+    ],
+
+    // price is per `cadence`; a monthly plan is compared over 90 days (price x 3).
+    // TODO(noah): confirm which pieces belong in which plan. First guess below.
+    // "booked" is in no plan on purpose: it shows as an add-on.
+    plans: [
+      { id: "list",     name: "List Only",         price: 297, cadence: "month", includes: ["report", "verify"] },
+      { id: "lock",     name: "Territory Lock",    price: 497, cadence: "month", includes: ["report", "verify", "excl", "refresh"] },
+      { id: "pipeline", name: "90-day Pipeline",   price: 997, cadence: "once",  includes: ["report", "verify", "excl", "refresh", "mail", "form"] }
+    ],
+    defaultPlan: "pipeline",
+    addOnLabel: "Add-on, ask me",
+
+    calculator: {
+      avgJob: { min: 5000, max: 60000, step: 500, default: 18000 },
+      close:  { min: 1, max: 10, step: 1, default: 3 }
+    },
+
+    // mode: "none" | "conditional" | "money_back". "none" hides the section.
+    // TODO(noah): confirm before going live
+    guarantee: {
+      mode: "conditional",
+      text: "Work every home on your list. If no homeowner books an estimate in 90 days, your next 90 days are free."
+    },
+
+    // status: "open" | "taken". Only mark a town taken when it really is.
+    // TODO(noah): confirm the town list you want to offer.
+    towns: [
+      { name: "Ashford", status: "open" },
+      { name: "Brooklyn", status: "open" },
+      { name: "Canterbury", status: "open" },
+      { name: "Chaplin", status: "open" },
+      { name: "Eastford", status: "open" },
+      { name: "Hampton", status: "open" },
+      { name: "Killingly", status: "open" },
+      { name: "Plainfield", status: "open" },
+      { name: "Pomfret", status: "open" },
+      { name: "Putnam", status: "open" },
+      { name: "Scotland", status: "open" },
+      { name: "Sterling", status: "open" },
+      { name: "Thompson", status: "open" },
+      { name: "Union", status: "open" },
+      { name: "Windham", status: "open" },
+      { name: "Woodstock", status: "open" }
+    ]
+  }
+];
+/* ---- end config ---- */
+
+(function () {
+  const offer = OFFERS[0];
+  const $ = (id) => document.getElementById(id);
+  const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
+  const cost90 = (p) => (p.cadence === "month" ? p.price * 3 : p.price);
+  const priceLabel = (p) => money(p.price) + (p.cadence === "month" ? " / mo" : "");
+  const el = (tag, cls, text) => {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  };
+
+  // Offer name label
+  const m = offer.magic;
+  $("offer-name").textContent = m.reason + " " + m.avatar + " " + m.container + ": " + m.goal + " in " + m.interval;
+
+  // Mail link
+  $("cta-mail").href = "mailto:" + SITE.contactEmail +
+    "?subject=" + encodeURIComponent(SITE.mailSubject) +
+    "&body=" + encodeURIComponent(SITE.mailBody);
+
+  // Plans (native radios: arrow keys + focus work for free)
+  let planId = offer.defaultPlan;
+  const planWrap = $("plans");
+  offer.plans.forEach((p) => {
+    const label = el("label", "plan");
+    const input = el("input");
+    input.type = "radio"; input.name = "plan"; input.value = p.id; input.checked = p.id === planId;
+    input.addEventListener("change", () => { planId = p.id; render(); });
+    const face = el("span", "face");
+    const price = el("span", "price", money(p.price));
+    if (p.cadence === "month") price.appendChild(el("small", "", " / mo"));
+    face.append(price, el("span", "pname", p.name));
+    label.append(input, face);
+    planWrap.appendChild(label);
+  });
+
+  // Pieces
+  const pieceEls = {};
+  offer.pieces.forEach((pc) => {
+    const li = el("li", "piece out");
+    li.append(el("span", "dot"));
+    const body = el("div");
+    body.append(el("div", "pt", pc.title), el("div", "pd", pc.desc));
+    const status = el("span", "sr");
+    const avail = el("div", "avail");
+    li.append(body, avail);
+    body.prepend(status);
+    $("pieces").appendChild(li);
+    pieceEls[pc.id] = { li, status, avail };
+  });
+
+  // Calculator inputs
+  const cfg = offer.calculator;
+  const job = { range: $("job-range"), num: $("job-num") };
+  const close = { range: $("close-range"), num: $("close-num") };
+  [[job, cfg.avgJob], [close, cfg.close]].forEach(([pair, c]) => {
+    [pair.range, pair.num].forEach((i) => { i.min = c.min; i.max = c.max; i.step = c.step; i.value = c.default; });
+  });
+  const clamp = (v, c) => Math.min(c.max, Math.max(c.min, Math.round(v / c.step) * c.step));
+  function wire(pair, c) {
+    pair.range.addEventListener("input", () => { pair.num.value = pair.range.value; render(); });
+    pair.num.addEventListener("input", () => {
+      const v = parseFloat(pair.num.value);
+      if (!isNaN(v)) { pair.range.value = clamp(v, c); render(); }
+    });
+    pair.num.addEventListener("change", () => {
+      const v = parseFloat(pair.num.value);
+      pair.num.value = clamp(isNaN(v) ? c.default : v, c);
+      pair.range.value = pair.num.value;
+      render();
+    });
+  }
+  wire(job, cfg.avgJob);
+  wire(close, cfg.close);
+
+  function render() {
+    const plan = offer.plans.find((p) => p.id === planId);
+    const avg = parseFloat(job.range.value);
+    const closed = parseInt(close.range.value, 10);
+
+    // Pieces
+    offer.pieces.forEach((pc) => {
+      const r = pieceEls[pc.id];
+      const inPlan = plan.includes.indexOf(pc.id) !== -1;
+      r.li.className = "piece " + (inPlan ? "in" : "out");
+      r.status.textContent = inPlan ? "Included. " : "Not included. ";
+      if (inPlan) { r.avail.textContent = ""; r.avail.hidden = true; return; }
+      const host = offer.plans.find((p) => p.includes.indexOf(pc.id) !== -1);
+      r.avail.textContent = host ? "available on " + host.name : offer.addOnLabel;
+      r.avail.hidden = false;
+    });
+
+    // Numbers
+    const total = cost90(plan);
+    const times = avg / total;
+    const breakEven = Math.ceil((total / avg) * 10 - 1e-9) / 10; // round up to 1 decimal, never show 0.0
+    const shown = Math.max(0.1, breakEven);
+    const covers = times >= 1;
+    const timesText = times >= 10 ? String(Math.round(times)) : (Math.round(times * 10) / 10).toString();
+
+    const big = $("out-big");
+    big.textContent = "";
+    if (covers) {
+      big.append("One job covers this plan ");
+      big.append(el("span", "n", timesText));
+      big.append(timesText === "1" ? " time." : " times.");
+    } else {
+      big.textContent = "One job doesn't cover this plan.";
+    }
+
+    $("out-be").textContent = "";
+    $("out-be").append("Jobs you'd need to break even: ", el("b", "", shown.toFixed(1)));
+    $("out-be").append(plan.cadence === "month" ? " (" + money(total) + " over 90 days)" : "");
+
+    // Bars share one scale so the price visibly shrinks next to a job
+    const scale = Math.max(avg, total);
+    $("bar-job").style.width = (avg / scale * 100) + "%";
+    $("bar-cost").style.width = (total / scale * 100) + "%";
+    $("bar-job-v").textContent = money(avg);
+    $("bar-cost-l").textContent = "";
+    $("bar-cost-l").append(plan.name + (plan.cadence === "month" ? ", 90 days" : ""), el("b", "", money(total)));
+
+    const bad = $("out-bad");
+    bad.classList.toggle("show", breakEven > 1);
+    bad.textContent = breakEven > 1
+      ? "At these numbers this plan costs more than one average job: you'd need about " + shown.toFixed(1) +
+        " jobs to break even. Try a smaller plan, or skip it."
+      : "";
+
+    $("out-quiet").textContent = "From " + m.goal.toLowerCase() +
+      ", if a few homeowners ask for an estimate and you close at your usual rate (" + closed + " out of 10), " +
+      (breakEven > 1 ? "it would take more than one job to cover this plan." : "a single job covers the cost.");
+  }
+
+  // Guarantee
+  const g = offer.guarantee;
+  if (g && g.mode !== "none" && g.text) {
+    $("guarantee-text").textContent = g.text;
+    $("guarantee").hidden = false;
+  }
+
+  // Towns
+  const open = offer.towns.filter((t) => t.status === "open").length;
+  offer.towns.forEach((t) => {
+    const li = el("li", "town" + (t.status === "taken" ? " taken" : ""));
+    li.append(t.name);
+    if (t.status === "taken") li.append(" ", el("span", "st", "taken"));
+    $("towns").appendChild(li);
+  });
+  $("towns-open").textContent = open + " of " + offer.towns.length + " towns open";
+
+  // Theme toggle (same effective-scheme logic as the lead board)
+  $("theme-toggle").addEventListener("click", () => {
+    const root = document.documentElement;
+    const explicit = root.getAttribute("data-theme");
+    const sysDark = !window.matchMedia("(prefers-color-scheme: light)").matches;
+    const dark = explicit ? explicit === "dark" : sysDark;
+    root.setAttribute("data-theme", dark ? "light" : "dark");
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
