@@ -3,20 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var t=null;try{t=localStorage.getItem('sp-theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})()</script>
 <title>Survives Production</title>
-<meta name="description" content="Software for small businesses, built with AI and proven on real jobs. Lead and data tools for contractors and trades, with every build on YouTube.">
+<meta name="description" content="Software for small businesses, built with AI and proven on real jobs. Job-finding and data tools for contractors and trades, with every build on YouTube.">
 <meta name="theme-color" content="#0E1A2B">
 <link rel="canonical" href="https://survivesproduction.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%230E1A2B'/%3E%3Cpath d='M7.5 13.5l3.5 3.5 7.5-8' fill='none' stroke='%233FD48D' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://survivesproduction.com/">
 <meta property="og:title" content="Survives Production">
-<meta property="og:description" content="Software for small businesses, built with AI and proven on real jobs. Lead and data tools for contractors and trades, with every build on YouTube.">
+<meta property="og:description" content="Software for small businesses, built with AI and proven on real jobs. Job-finding and data tools for contractors and trades, with every build on YouTube.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@survivesprod">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
 <style>
 /* Layout: dark navy ops board. Hero = pitch on the left, a real field log on the right (the one loud element).
    Below: builds as ruled rows, three ways to work together, about, contact. Left-aligned throughout. */
@@ -55,18 +57,11 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--green); outline-o
   padding-right: max(20px, env(safe-area-inset-right, 0px));
 }
 
-/* Header */
-.top { border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; flex-wrap: wrap; }
-.mark { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.mark svg { flex: none; }
-.mark span {
-  font-family: var(--display); font-weight: 800; font-size: 1.15rem;
-  font-stretch: 72%; letter-spacing: 0.01em;
-}
-.top nav { display: flex; gap: 22px; flex-wrap: wrap; }
-.top nav a { text-decoration: none; color: var(--dim); font-size: 0.95rem; }
-.top nav a:hover { color: var(--ink); }
+/* Crew strip: routes the people this site is for */
+.crew-strip { border-bottom: 1px solid var(--line); background: var(--raised); }
+.crew-strip .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-block: 14px; }
+.crew-strip p { margin: 0; font-weight: 650; }
+.crew-strip .btn { padding: 0 18px; min-height: 44px; }
 
 /* Hero */
 .hero .wrap {
@@ -162,9 +157,9 @@ h3 {
 }
 .status.live { color: var(--green); border-color: color-mix(in srgb, var(--green) 45%, var(--line)); }
 .links { display: flex; flex-direction: column; gap: 8px; font-size: 0.95rem; }
-.links a { color: var(--ink); text-underline-offset: 3px; text-decoration-color: var(--line); }
+.links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-underline-offset: 3px; text-decoration-color: var(--line); }
 .links a:hover { text-decoration-color: var(--ink); }
-.links .soon { color: var(--dim); }
+.links .soon { color: var(--dim); display: inline-flex; align-items: center; min-height: 44px; }
 
 /* Ways in */
 .ways { margin: 0; display: grid; gap: 26px; max-width: 46rem; }
@@ -180,11 +175,6 @@ h3 {
 .contact .actions { margin-top: 8px; }
 .handle { font-family: var(--mono); font-size: 0.95rem; color: var(--ink); margin-top: 18px; user-select: all; }
 
-footer.site { border-top: 1px solid var(--line); color: var(--dim); font-size: 0.9rem; }
-footer.site .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 26px; }
-footer.site nav { display: flex; gap: 20px; flex-wrap: wrap; }
-footer.site a { text-decoration: none; }
-footer.site a:hover { color: var(--ink); }
 
 @media (max-width: 880px) {
   .hero .wrap { grid-template-columns: minmax(0, 1fr); }
@@ -198,22 +188,31 @@ footer.site a:hover { color: var(--ink); }
 }
 </style>
 </head>
-<body>
-<header class="top">
-  <div class="wrap">
-    <a class="mark" href="#top" aria-label="Survives Production home">
+<body class="sp-brand">
+<header class="sp-top">
+  <div class="sp-wrap">
+    <a class="sp-mark" href="/" aria-label="Survives Production home">
       <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="6" fill="none" stroke="#3FD48D" stroke-width="2"/><path d="M7.5 13.5l3.5 3.5 7.5-8" fill="none" stroke="#3FD48D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span>Survives Production</span>
     </a>
-    <nav aria-label="Sections">
-      <a href="#builds">Builds</a>
-      <a href="#work">Work with me</a>
-      <a href="#about">About</a>
-      <a href="/leads">Lead board</a>
-      <a href="/offer">Offer</a>
+    <nav class="sp-nav" aria-label="Main">
+      <a href="/" aria-current="page">Home</a>
+      <a href="/jobs/">Job board</a>
+      <a href="/offer/">Offer</a>
+      <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">YouTube<span aria-hidden="true">&nbsp;&#8599;</span></a>
+      <button type="button" class="sp-theme" data-sp-theme aria-label="Switch between light and dark mode">Theme</button>
     </nav>
   </div>
 </header>
+<section class="crew-strip" aria-label="For crews">
+  <div class="wrap">
+    <p>Siding and roofing crew in the Quiet Corner?</p>
+    <div class="actions">
+      <a class="btn primary" href="/offer/">See the offer</a>
+      <a class="btn ghost" href="/jobs/">See the job board</a>
+    </div>
+  </div>
+</section>
 
 <main id="top">
   <section class="hero">
@@ -227,14 +226,14 @@ footer.site a:hover { color: var(--ink); }
         </div>
       </div>
 
-      <figure class="log" aria-label="Field log from a contractor lead-scorer build" style="margin:0">
-        <header><span>field-log / contractor-lead-scorer</span><span>northeast CT</span></header>
+      <figure class="log" aria-label="Field log from a contractor job-scorer build" style="margin:0">
+        <header><span>field-log / contractor-job-scorer</span><span>northeast CT</span></header>
         <ol>
           <li><span class="tag run">RUN</span><span class="msg">Score every home in 8 towns from free town records</span></li>
           <li><span class="tag bug">BUG</span><span class="msg">81% of homes came back with a perfect score</span></li>
           <li><span class="tag fix">FIX</span><span class="msg">Caught and fixed before the contractor ever saw the list</span></li>
           <li><span class="tag run">RUN</span><span class="msg">Ran the list live with the contractor</span></li>
-          <li class="win"><span class="tag live">LIVE</span><span class="msg">2 estimates booked in one afternoon</span><span class="stamp" aria-hidden="true">Survived</span></li>
+          <li id="log-win"><span class="tag next" id="log-tag">LOG</span><span class="msg" id="log-msg">Trial numbers are posted on the <a href="/offer/#trial">offer page</a> as they come in.</span><span class="stamp" id="log-stamp" aria-hidden="true" hidden>Survived</span></li>
           <li><span class="tag next">NEXT</span><span class="msg">Postcards to real mailboxes. Homeowners reach out first.</span></li>
         </ol>
         <footer>Full story: <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">I Turned Free Town Records Into Contractor Leads</a></footer>
@@ -251,12 +250,12 @@ footer.site a:hover { color: var(--ink); }
         <li class="build">
           <div>
             <span class="status live">Running for a client</span>
-            <h3>Property lead scorer</h3>
+            <h3>Exterior job finder</h3>
             <p class="who">Siding and roofing contractor, northeast Connecticut</p>
           </div>
           <div>
             <p>Ranks every home in a service area by how likely it is to need exterior work, using house age, tree cover, storm history and permit records from town assessor sites.</p>
-            <p class="result">2 estimates booked the first afternoon it was used.</p>
+            <p class="result" id="trial-result">Trial numbers are posted on the <a href="/offer/#trial">offer page</a> as they come in.</p>
           </div>
           <div class="links">
             <a href="https://github.com/SurvivesProduction/property-lead-scorer" target="_blank" rel="noopener">Free code on GitHub</a>
@@ -267,12 +266,12 @@ footer.site a:hover { color: var(--ink); }
         <li class="build">
           <div>
             <span class="status live">Free kit</span>
-            <h3>Hand-raiser lead flow</h3>
+            <h3>Hand-raiser estimate flow</h3>
             <p class="who">Any contractor sending mail</p>
           </div>
           <div>
             <p>Postcard, QR code, estimate form, then a Google Sheet row and an email to you. If the form's backend goes down, the homeowner gets a call-or-text fallback and the request still reaches you.</p>
-            <p class="result">Built after reading Connecticut's telemarketing law. Nobody gets a cold call.</p>
+            <p class="result">Built after reading Connecticut's telemarketing law. Homeowners get a postcard, not a cold call. Your crew only calls people who asked for an estimate.</p>
           </div>
           <div class="links">
             <a href="https://github.com/SurvivesProduction/hand-raiser-lead-flow" target="_blank" rel="noopener">Free code on GitHub</a>
@@ -306,7 +305,7 @@ footer.site a:hover { color: var(--ink); }
       <dl class="ways">
         <div><dt>Build it yourself.</dt><dd>Every build has free code on GitHub. Swap in your own towns and data. Costs nothing.</dd></div>
         <div><dt>Get the full build.</dt><dd>The version I actually run: real data sources, tuned scoring, the daily email. Message me for details.</dd></div>
-        <div><dt>Have me run it for you.</dt><dd>I point it at your service area and send you the leads. Your data never shows up in a video or a repo.</dd></div>
+        <div><dt>Have me run it for you.</dt><dd>I point it at your service area and send you the homes that are due for work. Your data never shows up in a video or a repo.</dd></div>
       </dl>
     </div>
   </section>
@@ -322,7 +321,7 @@ footer.site a:hover { color: var(--ink); }
 
   <section class="band contact" id="contact">
     <div class="wrap">
-      <h2>Run a small business with leads hiding in public records?</h2>
+      <h2>Run a small business with jobs hiding in public records?</h2>
       <p class="intro">Tell me what you do, where you work, and where your jobs come from now. I'll tell you honestly whether there's a tool in it.</p>
       <div class="actions">
         <a class="btn primary" href="mailto:hello@survivesproduction.com?subject=A%20tool%20for%20my%20business">Email me</a>
@@ -333,16 +332,37 @@ footer.site a:hover { color: var(--ink); }
   </section>
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <span>Survives Production</span>
+<footer class="sp-foot">
+  <div class="sp-wrap">
+    <div>
+      <strong>Survives Production</strong>
+      <p data-compliance hidden></p>
+    </div>
     <nav aria-label="Elsewhere">
       <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">YouTube</a>
       <a href="https://github.com/SurvivesProduction" target="_blank" rel="noopener">GitHub</a>
       <a href="https://x.com/survivesprod" target="_blank" rel="noopener">X</a>
-      <a href="mailto:hello@survivesproduction.com">Email</a>
+      <a href="mailto:hello@survivesproduction.com">hello@survivesproduction.com</a>
+      <a href="/privacy/">Privacy</a>
     </nav>
   </div>
 </footer>
+<script src="/assets/site.js"></script>
+<script>
+/* Trial claim comes from /data/offer.json so home and the offer page can't disagree. */
+SP.offer().then(function (d) {
+  var t = d.trialLog;
+  if (t.estimatesDone === null || t.estimatesDone === undefined) return;
+  var n = t.estimatesDone;
+  var how = t.channel ? " (" + t.channel.charAt(0).toLowerCase() + t.channel.slice(1) + ")" : "";
+  var txt = n + " estimate" + (n === 1 ? "" : "s") + " done" + how + ". ";
+  var link = function () { var a = document.createElement("a"); a.href = "/offer/#trial"; a.textContent = "See the trial log"; return a; };
+  var msg = document.getElementById("log-msg"); msg.textContent = txt; msg.appendChild(link());
+  document.getElementById("log-tag").className = "tag live"; document.getElementById("log-tag").textContent = "LIVE";
+  document.getElementById("log-win").className = "win";
+  if (n > 0) document.getElementById("log-stamp").hidden = false;
+  var r = document.getElementById("trial-result"); r.textContent = txt; r.appendChild(link());
+}).catch(function () {});
+</script>
 </body>
 </html>
