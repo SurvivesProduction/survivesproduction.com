@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var t=null;try{t=localStorage.getItem('sp-theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})()</script>
+<title>Estimate Requests From Homeowners in Your Territory | Survives Production</title>
+<meta name="description" content="Get 2 scored homes in your Quiet Corner town free. Drive by them. Then postcards go out to verified homes and homeowners ask you for estimates. One siding crew per territory. The math and the odds are on the page.">
+<meta name="theme-color" content="#0E1A2B">
+<link rel="canonical" href="https://survivesproduction.com/offer/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%230E1A2B'/%3E%3Cpath d='M7.5 13.5l3.5 3.5 7.5-8' fill='none' stroke='%233FD48D' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://survivesproduction.com/offer/">
+<meta property="og:title" content="Estimate requests from homeowners in your territory this winter">
+<meta property="og:description" content="Get 2 scored homes in your Quiet Corner town free. Drive by them. Then postcards go out to verified homes and homeowners ask you for estimates. One siding crew per territory.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@survivesprod">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/offer.css">
+</head>
+<body class="sp-brand">
+<header class="sp-top">
+  <div class="sp-wrap">
+    <a class="sp-mark" href="/" aria-label="Survives Production home">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="6" fill="none" stroke="#3FD48D" stroke-width="2"/><path d="M7.5 13.5l3.5 3.5 7.5-8" fill="none" stroke="#3FD48D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Survives Production</span>
+    </a>
+    <nav class="sp-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/jobs/">Job board</a>
+      <a href="/offer/" aria-current="page">Offer</a>
+      <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">YouTube<span aria-hidden="true">&nbsp;&#8599;</span></a>
+      <button type="button" class="sp-theme" data-sp-theme aria-label="Switch between light and dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1>Estimate requests from homeowners in your territory this winter.</h1>
+      <p class="lede" data-hero-sub>Loading the numbers…</p>
+      <p class="price-line" data-hero-price></p>
+      <div class="actions">
+        <a class="btn primary" href="#get-homes">Get 2 free homes in your town</a>
+        <a class="btn ghost" href="/jobs/">See the job board</a>
+      </div>
+      <p id="load-err">The numbers didn't load. Email <a href="mailto:hello@survivesproduction.com">hello@survivesproduction.com</a> and I'll send them.</p>
+      <noscript><p class="sub">The numbers, charts and calculator on this page need JavaScript. Email hello@survivesproduction.com and I'll send them.</p></noscript>
+    </div>
+  </section>
+
+  <section class="band" id="how">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><h3>Town records</h3><p>I pull your towns' public assessor and permit records and score every home for siding and roof age.</p></li>
+        <li><h3>Street View check</h3><p>I look at each top home on Street View and drop the ones already redone.</p></li>
+        <li><h3>Three postcards</h3><p>The homes that are left get a postcard sequence. Homeowners who want an estimate fill out a short page or call.</p></li>
+        <li><h3>You get a text</h3><p>When a homeowner asks for an estimate, you get a text. You go do the estimate.</p></li>
+      </ol>
+      <p class="only">You only talk to homeowners who asked.</p>
+    </div>
+  </section>
+
+  <section class="band" id="math">
+    <div class="wrap">
+      <h2>The math, in the open</h2>
+      <p class="intro">Here is how many homes are in each territory, how many I expect to be worth mailing, and what the odds look like. One number is a guess, and it's marked as one.</p>
+
+      <div class="card">
+        <h3>From all the homes to the ones I mail</h3>
+        <p class="sub">Pick a territory.</p>
+        <div class="tabs" id="funnel-tabs" role="group" aria-label="Territory"></div>
+        <div id="funnel"></div>
+        <ul class="basis" id="funnel-basis"></ul>
+      </div>
+
+      <div class="card">
+        <h3>Try your own numbers</h3>
+        <p class="sub">Change the three inputs. Everything below them updates.</p>
+        <div class="field"><label for="rate-num">Estimate requests per postcard (%)</label>
+          <div class="pair"><input type="range" id="rate-range" aria-label="Request rate per postcard, slider"><input type="number" id="rate-num" inputmode="decimal"></div></div>
+        <div class="field"><label for="close-num">Out of 10 estimates, how many do you usually close?</label>
+          <div class="pair"><input type="range" id="close-range" aria-label="Estimates closed out of 10, slider"><input type="number" id="close-num" inputmode="numeric"></div></div>
+        <div class="field"><label for="job-num">Your average siding job ($)</label>
+          <div class="pair"><input type="range" id="job-range" aria-label="Average siding job, slider"><input type="number" id="job-num" inputmode="numeric"></div></div>
+        <div class="outs" aria-live="polite">
+          <div class="out"><span class="k" id="o-req-k"></span><span class="v" id="o-req"></span></div>
+          <div class="out"><span class="k">Expected jobs (if every request becomes an estimate you run)</span><span class="v" id="o-jobs"></span></div>
+          <div class="out"><span class="k" id="o-atleast-k"></span><span class="v" id="o-atleast"></span></div>
+          <div class="out"><span class="k" id="o-cover-k"></span><span class="v" id="o-cover"></span></div>
+        </div>
+        <p class="note" id="benchmark"></p>
+        <p class="note disclaimer">This is math on the assumptions shown, not a promise of results.</p>
+      </div>
+
+      <div class="card">
+        <h3>How likely is it that the guarantee kicks in?</h3>
+        <p class="sub">A simple model: each home is mailed the same cards and responds on its own. Real life is lumpier than that.</p>
+        <div id="odds"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="territories">
+    <div class="wrap">
+      <h2>Territories</h2>
+      <p class="intro">One crew per territory, for siding. A quarter of mail is one batch of homes. "Quarters of mail" is how many batches the territory can supply before I run out of homes worth mailing.</p>
+      <ul class="terr" id="terr-list"></ul>
+      <div class="card"><h3>Quarters of mail per territory</h3><div id="terr-chart"></div></div>
+      <p class="sub" id="terr-note"></p>
+    </div>
+  </section>
+
+  <section class="band" id="timeline-band">
+    <div class="wrap">
+      <h2>The first 90 days</h2>
+      <p class="intro">Days are counted from sign-up. The guarantee clocks start when your first cards land.</p>
+      <div class="card"><div id="timeline"></div><ol class="legend-list" id="timeline-list"></ol></div>
+    </div>
+  </section>
+
+  <section class="band" id="price">
+    <div class="wrap">
+      <h2>What you get and what it costs</h2>
+      <div class="two">
+        <div class="card">
+          <h3>What's in it</h3>
+          <ul class="stack" id="stack-list"></ul>
+        </div>
+        <div class="card">
+          <h3>Price</h3>
+          <p class="price-big" id="price-big"></p>
+          <p id="price-line"></p>
+          <p id="keep-line"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="guarantee">
+    <div class="wrap">
+      <h2>The full guarantee</h2>
+      <p class="quote" id="guarantee-text"></p>
+    </div>
+  </section>
+
+  <section class="band" id="trial">
+    <div class="wrap">
+      <h2>Trial log</h2>
+      <p class="intro">Real numbers from early trials. Small on purpose; we update them as they come in.</p>
+      <div class="card"><div class="tbl-wrap"><table class="trial" id="trial-table"></table></div></div>
+    </div>
+  </section>
+
+  <section class="band" id="limits">
+    <div class="wrap">
+      <h2>Limits</h2>
+      <ul class="limits">
+        <li>No promise of jobs.</li>
+        <li>Street View imagery can be a few years old.</li>
+        <li>Some towns have no permit history online, so those homes are scored on build year and siding alone.</li>
+        <li>Building territories use the state's parcel data until we finish scraping them.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band faq" id="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+      <details><summary>What counts as an estimate request?</summary><p id="faq-request"></p></details>
+      <details><summary>What if a homeowner calls me directly?</summary><p>If the homeowner says the call came from the card, it counts. Tell me and I'll log it.</p></details>
+      <details><summary>What happens to my homes if I leave?</summary><p>Your territory opens up to another siding crew. I don't pass your homeowners' requests to anyone else.</p></details>
+      <details><summary>Why one crew per territory?</summary><p>So a homeowner who raises a hand is sending that request to one crew, and you aren't racing another crew to the same mailbox.</p></details>
+      <details><summary>What happens to the 2 free homes if I don't sign up?</summary><p>They're retired and never mailed for anyone else.</p></details>
+      <details><summary>Where does the data come from?</summary><p id="faq-source"></p></details>
+    </div>
+  </section>
+
+  <section class="band" id="get-homes">
+    <div class="wrap">
+      <h2>Get 2 free homes in your town</h2>
+      <p class="intro">Tell me your name, your town and the best number. I'll send 2 scored homes to drive by. This opens your email app with the details filled in.</p>
+      <form class="getform" id="get-form">
+        <div class="field"><label for="f-name">Name</label><input type="text" id="f-name" name="name" autocomplete="name"></div>
+        <div class="field"><label for="f-town">Town</label><input type="text" id="f-town" name="town"></div>
+        <div class="field"><label for="f-phone">Best number</label><input type="tel" id="f-phone" name="phone" autocomplete="tel"></div>
+        <div class="actions"><button class="btn primary" type="submit">Get 2 free homes in your town</button><a class="btn ghost" href="/jobs/">See the job board</a></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div class="comp">
+  <div class="wrap">
+    <p data-compliance hidden></p>
+    <p>Each crew's CT HIC registration number is printed on its postcards.</p>
+    <p><a href="/privacy/">Privacy notice</a></p>
+  </div>
+</div>
+<footer class="sp-foot">
+  <div class="sp-wrap">
+    <div>
+      <strong>Survives Production</strong>
+      <p data-compliance hidden></p>
+    </div>
+    <nav aria-label="Elsewhere">
+      <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://github.com/SurvivesProduction" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/survivesprod" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@survivesproduction.com">hello@survivesproduction.com</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+  </div>
+</footer>
+<script src="/assets/site.js"></script>
+<script src="/assets/offer.js"></script>
+</body>
+</html>
