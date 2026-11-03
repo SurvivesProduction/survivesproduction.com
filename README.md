@@ -1,11 +1,14 @@
 # survivesproduction.com
 
-The Survives Production website. One static page, no build step, served by GitHub Pages.
+The Survives Production website. Static site, no build step, served by GitHub Pages.
 
-- `index.html` is the whole site.
+- `index.html` is the home page. `offer/index.html` is the offer, `jobs/index.html` is the Job Board, `privacy/index.html` is the privacy notice.
+- `leads.html` is only a redirect to `/jobs/` (old links were texted to crews). Don't delete it.
+- `data/offer.json` holds every number on the offer page. Edit it, not the HTML.
+- `assets/site.css` and `assets/site.js` are the shared header, footer and theme toggle. The header and footer markup is copied into each page; change it in all four.
 - `CNAME` tells GitHub Pages the custom domain. Don't delete it.
 
-To change the site, edit `index.html` and push to `main`. Pages redeploys in about a minute.
+To change the site, edit the files and push to `main`. Pages redeploys in about a minute.
 
 ## How the domain is wired
 
