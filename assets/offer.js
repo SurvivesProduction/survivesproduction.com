@@ -141,6 +141,22 @@
     $("#o-cover-k").textContent = "Jobs it takes to cover the " + money(d.price.founding);
     $("#o-atleast-k").textContent = "Chance of at least " + k + " requests in " + d.guarantee.checkDaysAfterFirstCards + " days";
     $("#o-req-k").textContent = "Expected estimate requests per " + d.price.termDays + " days";
+    // One job against the price: this is the part the job-value slider moves.
+    var price = d.price.founding, times = state.job / price;
+    var tt = times >= 10 ? String(Math.round(times)) : (Math.round(times * 10) / 10).toString();
+    var line = $("#o-times"); line.textContent = "";
+    if (times >= 1) {
+      line.appendChild(document.createTextNode("One " + money(state.job) + " job covers the " + money(price) + " "));
+      line.appendChild(h("span", { "class": "n", text: tt }));
+      line.appendChild(document.createTextNode(tt === "1" ? " time." : " times."));
+    } else {
+      line.textContent = "One " + money(state.job) + " job doesn't cover the " + money(price) + ".";
+    }
+    var bar = $("#o-bar"); bar.innerHTML = "";
+    bar.appendChild(barChart([
+      { label: "One average job", value: state.job, text: money(state.job), acc: true },
+      { label: "Price for " + d.price.termDays + " days", value: price, text: money(price) }
+    ], { max: Math.max(state.job, price), aria: "One average job of " + money(state.job) + " compared with the " + money(price) + " price: the job is " + tt + " times the price." }));
   }
   function calcInit(d) {
     var a = d.assumptions;
