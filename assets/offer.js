@@ -302,7 +302,7 @@
   }
 
   function faq(d) {
-    var a = $("#faq-source"); a.textContent = "Single-family home counts come from the " + d.townCountsSource.replace(/\.$/, "") + ". ";
+    var a = $("#faq-source"); a.textContent = "Town assessor records, Connecticut's statewide property data, and town building-permit portals. Single-family home counts come from the " + d.townCountsSource.replace(/\.$/, "") + ". ";
     a.appendChild(h("a", { href: d.townCountsSourceUrl, target: "_blank", rel: "noopener", text: "State parcel data" }));
     fill("#faq-request", "A completed request form from a mailed address, or a call to you that the homeowner says came from the card.");
   }
