@@ -1,0 +1,495 @@
+{
+ "as_of": "2026-11-19",
+ "towns_covered": 17,
+ "homes_scored": 42417,
+ "strong_matches": 4887,
+ "strong_cutoff": 0.85,
+ "bands": [
+  "< 0.40",
+  "0.40-0.55",
+  "0.55-0.70",
+  "0.70-0.85",
+  "0.85-0.99",
+  "1.00 (cap)"
+ ],
+ "towns": [
+  {
+   "town": "Windham",
+   "status": "open",
+   "homes_scored": 5118,
+   "bands": [
+    431,
+    1685,
+    1559,
+    806,
+    637,
+    0
+   ],
+   "strong_matches": 637,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 96,
+    "roof": 96,
+    "permits": 19
+   }
+  },
+  {
+   "town": "Mansfield",
+   "status": "open",
+   "homes_scored": 3992,
+   "bands": [
+    474,
+    816,
+    1149,
+    921,
+    632,
+    0
+   ],
+   "strong_matches": 632,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 82,
+    "roof": 83,
+    "permits": 0
+   }
+  },
+  {
+   "town": "Killingly",
+   "status": "taken",
+   "homes_scored": 5329,
+   "bands": [
+    635,
+    1156,
+    2133,
+    916,
+    484,
+    5
+   ],
+   "strong_matches": 489,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 99,
+    "roof": 67,
+    "permits": 70
+   }
+  },
+  {
+   "town": "Woodstock",
+   "status": "taken",
+   "homes_scored": 2954,
+   "bands": [
+    473,
+    666,
+    841,
+    511,
+    460,
+    null
+   ],
+   "strong_matches": 463,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 99,
+    "roof": 100,
+    "permits": 5
+   }
+  },
+  {
+   "town": "Thompson",
+   "status": "open",
+   "homes_scored": 3064,
+   "bands": [
+    269,
+    811,
+    1093,
+    511,
+    379,
+    null
+   ],
+   "strong_matches": 380,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 100,
+    "roof": 100,
+    "permits": 3
+   }
+  },
+  {
+   "town": "Putnam",
+   "status": "open",
+   "homes_scored": 2530,
+   "bands": [
+    346,
+    621,
+    895,
+    352,
+    316,
+    0
+   ],
+   "strong_matches": 316,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 89,
+    "roof": 89,
+    "permits": 49
+   }
+  },
+  {
+   "town": "Plainfield",
+   "status": "open",
+   "homes_scored": 4520,
+   "bands": [
+    560,
+    1152,
+    1741,
+    803,
+    264,
+    0
+   ],
+   "strong_matches": 264,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 99,
+    "roof": 99,
+    "permits": 89
+   }
+  },
+  {
+   "town": "Pomfret",
+   "status": "open",
+   "homes_scored": 1303,
+   "bands": [
+    247,
+    277,
+    360,
+    157,
+    261,
+    null
+   ],
+   "strong_matches": 262,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 99,
+    "roof": 99,
+    "permits": 5
+   }
+  },
+  {
+   "town": "Griswold",
+   "status": "open",
+   "homes_scored": 3795,
+   "bands": [
+    556,
+    1301,
+    1131,
+    560,
+    247,
+    0
+   ],
+   "strong_matches": 247,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 93,
+    "roof": 93,
+    "permits": 0
+   }
+  },
+  {
+   "town": "Brooklyn",
+   "status": "open",
+   "homes_scored": 2413,
+   "bands": [
+    362,
+    638,
+    774,
+    394,
+    243,
+    null
+   ],
+   "strong_matches": 245,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 99,
+    "roof": 99,
+    "permits": 5
+   }
+  },
+  {
+   "town": "Canterbury",
+   "status": "open",
+   "homes_scored": 1778,
+   "bands": [
+    210,
+    493,
+    632,
+    230,
+    212,
+    null
+   ],
+   "strong_matches": 213,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 100,
+    "roof": 100,
+    "permits": 7
+   }
+  },
+  {
+   "town": "Ashford",
+   "status": "taken",
+   "homes_scored": 1493,
+   "bands": [
+    184,
+    329,
+    530,
+    277,
+    168,
+    5
+   ],
+   "strong_matches": 173,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 97,
+    "roof": 97,
+    "permits": 67
+   }
+  },
+  {
+   "town": "Hampton",
+   "status": "open",
+   "homes_scored": 696,
+   "bands": [
+    70,
+    158,
+    216,
+    98,
+    154,
+    0
+   ],
+   "strong_matches": 154,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 100,
+    "roof": 100,
+    "permits": 37
+   }
+  },
+  {
+   "town": "Scotland",
+   "status": "open",
+   "homes_scored": 592,
+   "bands": [
+    85,
+    172,
+    152,
+    75,
+    108,
+    0
+   ],
+   "strong_matches": 108,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 100,
+    "roof": 100,
+    "permits": 0
+   }
+  },
+  {
+   "town": "Eastford",
+   "status": "open",
+   "homes_scored": 663,
+   "bands": [
+    112,
+    148,
+    205,
+    94,
+    104,
+    0
+   ],
+   "strong_matches": 104,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 99,
+    "roof": 100,
+    "permits": 0
+   }
+  },
+  {
+   "town": "Voluntown",
+   "status": "open",
+   "homes_scored": 1003,
+   "bands": [
+    128,
+    257,
+    389,
+    125,
+    103,
+    null
+   ],
+   "strong_matches": 104,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 100,
+    "roof": 100,
+    "permits": 42
+   }
+  },
+  {
+   "town": "Sterling",
+   "status": "open",
+   "homes_scored": 1174,
+   "bands": [
+    250,
+    327,
+    385,
+    116,
+    96,
+    0
+   ],
+   "strong_matches": 96,
+   "coverage_pct": {
+    "year_built": 100,
+    "wall": 99,
+    "roof": 99,
+    "permits": 34
+   }
+  }
+ ],
+ "histogram": {
+  "bin_width": 0.05,
+  "counts": [
+   0,
+   138,
+   296,
+   661,
+   1000,
+   939,
+   1055,
+   1303,
+   1991,
+   3766,
+   5250,
+   6043,
+   4661,
+   3481,
+   2274,
+   2255,
+   2417,
+   2396,
+   1477,
+   1014
+  ],
+  "strong_cutoff": 0.85
+ },
+ "decades": [
+  {
+   "label": "before 1800",
+   "homes": 896,
+   "median_score": 0.93
+  },
+  {
+   "label": "1800s",
+   "homes": 341,
+   "median_score": 0.89
+  },
+  {
+   "label": "1810s",
+   "homes": 99,
+   "median_score": 0.88
+  },
+  {
+   "label": "1820s",
+   "homes": 188,
+   "median_score": 0.9
+  },
+  {
+   "label": "1830s",
+   "homes": 176,
+   "median_score": 0.89
+  },
+  {
+   "label": "1840s",
+   "homes": 169,
+   "median_score": 0.89
+  },
+  {
+   "label": "1850s",
+   "homes": 360,
+   "median_score": 0.87
+  },
+  {
+   "label": "1860s",
+   "homes": 350,
+   "median_score": 0.75
+  },
+  {
+   "label": "1870s",
+   "homes": 570,
+   "median_score": 0.83
+  },
+  {
+   "label": "1880s",
+   "homes": 498,
+   "median_score": 0.74
+  },
+  {
+   "label": "1890s",
+   "homes": 600,
+   "median_score": 0.77
+  },
+  {
+   "label": "1900s",
+   "homes": 289,
+   "median_score": 0.72
+  },
+  {
+   "label": "1910s",
+   "homes": 903,
+   "median_score": 0.71
+  },
+  {
+   "label": "1920s",
+   "homes": 1220,
+   "median_score": 0.71
+  },
+  {
+   "label": "1930s",
+   "homes": 1347,
+   "median_score": 0.69
+  },
+  {
+   "label": "1940s",
+   "homes": 1809,
+   "median_score": 0.67
+  },
+  {
+   "label": "1950s",
+   "homes": 4276,
+   "median_score": 0.63
+  },
+  {
+   "label": "1960s",
+   "homes": 5287,
+   "median_score": 0.63
+  },
+  {
+   "label": "1970s",
+   "homes": 5993,
+   "median_score": 0.57
+  },
+  {
+   "label": "1980s",
+   "homes": 7692,
+   "median_score": 0.57
+  },
+  {
+   "label": "1990s",
+   "homes": 4842,
+   "median_score": 0.46
+  },
+  {
+   "label": "2000s",
+   "homes": 4494,
+   "median_score": 0.26
+  }
+ ]
+}

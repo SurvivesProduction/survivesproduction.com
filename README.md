@@ -2,10 +2,11 @@
 
 The Survives Production website. Static site, no build step, served by GitHub Pages.
 
-- `index.html` is the home page. `offer/index.html` is the offer, `jobs/index.html` is the Job Board, `privacy/index.html` is the privacy notice.
+- `index.html` is the home page. `offer/index.html` is the offer, `jobs/index.html` is the Job Board, `privacy/index.html` is the privacy notice, `towns/index.html` is the /towns page.
 - `leads.html` is only a redirect to `/jobs/` (old links were texted to crews). Don't delete it.
 - `data/offer.json` holds every number on the offer page. Edit it, not the HTML.
-- `assets/site.css` and `assets/site.js` are the shared header, footer and theme toggle. The header and footer markup is copied into each page; change it in all four.
+- `data/site_aggregates.json` holds every number on /towns (and the town map on /offer). It is written by `scripts/refresh_site_teaser.py` in the data repo, behind a leak guard: do not hand-edit it. `data/ct_towns.json` is the simplified town outlines for the map.
+- `assets/site.css` and `assets/site.js` are the shared header, footer and theme toggle. The header and footer markup is copied into each page; change it in all five.
 - `CNAME` tells GitHub Pages the custom domain. Don't delete it.
 
 To change the site, edit the files and push to `main`. Pages redeploys in about a minute.
