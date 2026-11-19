@@ -71,7 +71,7 @@
         t.status === "taken" ? "Taken" : int(t.strong_matches) + " strong"));
     });
     var key = h("ul", { "class": "key" }, a.bands.map(function (b, i) { return h("li", {}, [h("i", { "class": "b" + i }), b.replace("1.00 (cap)", "1.00").replace(/^< /, "under ")]); }));
-    key.appendChild(h("li", { text: "The two green bands (0.85 and up) are the strong matches." }));
+    key.appendChild(h("li", { text: "Bands count every home we checked. Strong matches are the reachable homes scoring " + a.strong_cutoff.toFixed(2) + " or higher." }));
     card(host, "Homes by score band", "Each bar is every home we checked in that town. Higher bands are better matches for siding work.", svg,
       ["Town", "Status", "Homes checked"].concat(a.bands, ["Strong matches"]),
       towns.map(function (t) { return [t.town, t.status === "taken" ? "Taken" : "Open", int(t.homes_scored)].concat(t.bands.map(int), [int(t.strong_matches)]); }), key);
@@ -96,9 +96,8 @@
       svg.appendChild(s("text", { x: left + v * inner, y: hgt - 12, "class": "tick", "text-anchor": v === 0 ? "start" : v === 1 ? "end" : "middle" }, v.toFixed(2)));
     });
     svg.appendChild(s("line", { x1: left, x2: W - left, y1: base, y2: base, "class": "axis" }));
-    var share = a.strong_matches / a.homes_scored;
-    var note = h("p", { "class": "sub", text: "Dashed boxes mean fewer than 5 homes. About " + Math.round(share * 100) + " of every 100 homes we checked is a strong match." });
-    card(host, "Homes at each score", "Most homes land in the middle. Only the ones past the dashed line are worth mailing.", svg,
+    var note = h("p", { "class": "sub", text: "These bars count every home we checked. Strong matches only count owners we can actually mail, so there are fewer strong matches (" + int(a.strong_matches) + ") than homes past the line. Dashed boxes mean fewer than 5 homes." });
+    card(host, "Homes at each score", "Most homes land in the middle. Only the ones past the dashed line can be strong matches.", svg,
       ["Score range", "Homes"], H.counts.map(function (c, i) { return [(i * H.bin_width).toFixed(2) + " to " + ((i + 1) * H.bin_width).toFixed(2), int(c)]; }), note);
   }
 
@@ -140,6 +139,7 @@
     var a = d.agg;
     stats(a); townBars(a); histogram(a); decades(a); coverage(a);
     $("#as-of").textContent = shortDate(a.as_of);
+    document.querySelectorAll("[data-cutoff]").forEach(function (n) { n.textContent = a.strong_cutoff.toFixed(2); });
   }).catch(function (err) {
     var box = $("#load-err"); if (box) box.style.display = "block";
     if (window.console) console.warn("towns data failed to load", err);

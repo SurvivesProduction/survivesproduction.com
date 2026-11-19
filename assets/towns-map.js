@@ -14,7 +14,7 @@
     return fetch(url, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(url + " " + r.status); return r.json(); });
   }
   function load() {
-    if (!cache) cache = Promise.all([get("/data/site_aggregates.json"), get("/data/ct_towns.json")]).then(function (a) { return { agg: a[0], geo: a[1] }; });
+    if (!cache) cache = Promise.all([agg(), get("/data/ct_towns.json")]).then(function (a) { return { agg: a[0], geo: a[1] }; });
     return cache;
   }
   function int(n) { return n === null || n === undefined ? "<5" : Math.round(n).toLocaleString("en-US"); }
@@ -63,7 +63,13 @@
     root.appendChild(info);
   }
 
-  window.SPTowns = { load: load, int: int };
+  var aggCache = null;
+  function agg() {
+    if (!aggCache) aggCache = get("/data/site_aggregates.json");
+    return aggCache;
+  }
+
+  window.SPTowns = { load: load, agg: agg, int: int };
   document.querySelectorAll("[data-town-map]").forEach(function (root) {
     load().then(function (d) { draw(root, d, root.getAttribute("data-town-map") === "compact"); }).catch(function (err) {
       root.textContent = "The map didn't load.";

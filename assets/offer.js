@@ -37,15 +37,23 @@
     var k = d.guarantee.minRequests;
     return { perHome: p, lambda: lam, trigger: poissonLess(k, lam), refund: poissonLess(k, 2 * lam) };
   }
+  /* Reachable homes and strong matches come from /data/site_aggregates.json (the same export /towns reads), so the two pages
+     cannot disagree. A town the export doesn't cover is "not scored yet" and is left out of every number. */
+  var agg = null;
   function territory(d, t) {
+    var byTown = {};
+    agg.towns.forEach(function (x) { byTown[x.town] = x; });
     var towns = t.towns.map(function (n) {
-      var x = d.towns[n];
-      return { name: n, sf: x.singleFamily, reach: Math.round(x.singleFamily * d.assumptions.reachableShare), permit: x.permitData, scraped: x.scraped };
+      var x = d.towns[n], a = byTown[n];
+      return { name: n, scored: !!a, sf: x.singleFamily, homes: a ? a.homes_scored : 0, reach: a ? a.reachable_homes : 0,
+               strong: a ? a.strong_matches : 0, permit: x.permitData, scraped: x.scraped };
     });
-    var sum = function (f) { return towns.reduce(function (a, x) { return a + f(x); }, 0); };
-    var reach = sum(function (x) { return x.reach; });
-    var worth = Math.round(reach * d.assumptions.mailableShare);
-    return { t: t, towns: towns, sf: sum(function (x) { return x.sf; }), reach: reach, worth: worth, quarters: worth / d.batch.homesPer90Days };
+    var scored = towns.filter(function (x) { return x.scored; });
+    var sum = function (f) { return scored.reduce(function (a, x) { return a + f(x); }, 0); };
+    var worth = sum(function (x) { return x.strong; });
+    return { t: t, towns: towns, notScored: towns.filter(function (x) { return !x.scored; }).map(function (x) { return x.name; }),
+             sf: sum(function (x) { return x.sf; }), homes: sum(function (x) { return x.homes; }), reach: sum(function (x) { return x.reach; }),
+             worth: worth, quarters: worth / d.batch.homesPer90Days };
   }
   function sellable(t) { return t.status !== "taken"; }
   function statusText(t) {
@@ -110,24 +118,23 @@
     var T = terrs.filter(function (x) { return x.t.id === state.terr; })[0], a = d.assumptions;
     var rows = [
       { label: "Single-family homes", value: T.sf, text: int(T.sf) },
-      { label: "Reachable (build year known, owner reachable)", value: T.reach, text: int(T.reach) },
-      { label: "Worth mailing (a guess, being measured)", value: T.worth, text: int(T.worth), acc: false },
+      { label: "Homes checked, owner reachable", value: T.reach, text: int(T.reach) },
+      { label: "Strong matches (reachable, score " + agg.strong_cutoff.toFixed(2) + "+)", value: T.worth, text: int(T.worth), acc: false },
       { label: "Mailed per " + d.price.termDays + " days", value: d.batch.homesPer90Days, text: int(d.batch.homesPer90Days), acc: true }
     ];
     wrap.innerHTML = "";
     wrap.appendChild(barChart(rows, { max: T.sf, aria: T.t.name + " territory: " + int(T.sf) + " single-family homes, " + int(T.reach) +
-      " reachable, " + int(T.worth) + " worth mailing (a guess), " + d.batch.homesPer90Days + " mailed per " + d.price.termDays + " days." }));
+      " reachable, " + int(T.worth) + " strong matches, " + d.batch.homesPer90Days + " mailed per " + d.price.termDays + " days." }));
     wrap.appendChild(numbersTable(["Step", "Homes"], rows.map(function (r) { return [r.label, r.text]; })));
     var basis = $("#funnel-basis"); basis.innerHTML = "";
     [
       ["Single-family homes", d.townCountsSource],
-      ["Reachable = " + rate(a.reachableShare) + " of single-family homes", a.reachableShareBasis],
-      ["Worth mailing = " + rate(a.mailableShare) + " of reachable", a.mailableShareBasis]
-    ].forEach(function (x, i) {
-      var li = h("li", {}, [h("b", { text: x[0] + ". " }), x[1]]);
-      if (i === 2) li.querySelector("b").className = "guess";
-      basis.appendChild(li);
+      ["Reachable = " + (T.homes ? Math.round(100 * T.reach / T.homes) : 0) + "% of the homes we checked here", "Measured, not estimated: the owner isn't absentee and has no tax delinquency on file. Counted from the same records as the /towns page, as of " + agg.as_of + "."],
+      ["Strong matches = reachable homes scoring " + agg.strong_cutoff.toFixed(2) + " or higher out of 1", "Measured from town records. Every home is still checked on Street View before it's mailed, and some drop out."]
+    ].forEach(function (x) {
+      basis.appendChild(h("li", {}, [h("b", { text: x[0] + ". " }), x[1]]));
     });
+    if (T.notScored.length) basis.appendChild(h("li", {}, [h("b", { text: "Not scored yet: " + T.notScored.join(", ") + ". " }), "Left out of every number above."]));
   }
 
   function calc(d) {
@@ -207,10 +214,11 @@
         h("p", { "class": "towns", text: T.t.towns.join(", ") }),
         h("dl", {}, [
           h("dt", { text: "Single-family homes" }), h("dd", { text: int(T.sf) }),
-          h("dt", { text: "Reachable homes" }), h("dd", { text: int(T.reach) }),
+          h("dt", { text: "Homes checked, owner reachable" }), h("dd", { text: int(T.reach) }),
+          h("dt", { text: "Strong matches" }), h("dd", { text: int(T.worth) }),
           h("dt", { text: "Quarters of mail" }), h("dd", { text: T.quarters.toFixed(1) }),
           h("dt", { text: "Permit history online" }), h("dd", { text: permit.length ? permit.join(", ") : "None" })
-        ])
+        ].concat(T.notScored.length ? [h("dt", { text: "Not scored yet" }), h("dd", { text: T.notScored.join(", ") })] : []))
       ]);
       list.appendChild(li);
     });
@@ -219,7 +227,7 @@
     var wrap = $("#terr-chart"); wrap.innerHTML = "";
     wrap.appendChild(barChart(rows, { max: max, ref: { value: 4, label: "1 year" }, aria: "Quarters of mail per territory, at " + d.batch.homesPer90Days + " homes per quarter: " +
       terrs.map(function (T) { return T.t.name + " " + T.quarters.toFixed(1); }).join(", ") + ". One year is 4 quarters." }));
-    wrap.appendChild(numbersTable(["Territory", "Worth mailing", "Quarters of mail"], terrs.map(function (T) { return [T.t.name, int(T.worth), T.quarters.toFixed(1)]; })));
+    wrap.appendChild(numbersTable(["Territory", "Strong matches", "Quarters of mail"], terrs.map(function (T) { return [T.t.name, int(T.worth), T.quarters.toFixed(1)]; })));
     var open = d.territories.filter(function (t) { return t.status === "open"; });
     var taken = d.territories.filter(function (t) { return t.status === "taken"; }).length;
     var building = d.territories.filter(function (t) { return t.status === "building"; }).length;
@@ -318,7 +326,8 @@
   }
 
   form();
-  window.SP.offer().then(function (d) {
+  Promise.all([window.SP.offer(), window.SPTowns.agg()]).then(function (res) {
+    var d = res[0]; agg = res[1];
     hero(d); funnel(d); calcInit(d); oddsChart(d);
     var tr = territories(d); timeline(d); stack(d, tr); trial(d); faq(d);
   }).catch(function (err) {
