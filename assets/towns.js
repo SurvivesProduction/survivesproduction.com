@@ -71,7 +71,7 @@
         t.status === "taken" ? "Taken" : int(t.strong_matches) + " strong"));
     });
     var key = h("ul", { "class": "key" }, a.bands.map(function (b, i) { return h("li", {}, [h("i", { "class": "b" + i }), b.replace(/^< /, "under ")]); }));
-    key.appendChild(h("li", { text: "Bands count every home we checked. Strong matches are the reachable homes scoring " + a.strong_cutoff.toFixed(2) + " or higher." }));
+    key.appendChild(h("li", { text: "Bands count every home we checked. The bright top segment is the strong matches. The grey segment scores " + a.strong_cutoff.toFixed(2) + " or higher too, but we can't mail the owner." }));
     card(host, "Homes by score band", "Each bar is every home we checked in that town. Higher bands are better matches for siding work.", svg,
       ["Town", "Status", "Homes checked"].concat(a.bands, ["Strong matches"]),
       towns.map(function (t) { return [t.town, t.status === "taken" ? "Taken" : "Open", int(t.homes_scored)].concat(t.bands.map(int), [int(t.strong_matches)]); }), key);

@@ -1,9 +1,9 @@
 /* /towns and the compact map on /offer. Tokens come from site.css (body.sp-brand). */
 :root {
-  --b0: #2B3F5C; --b1: #36557A; --b2: #3E7488; --b3: #3A9B84; --b4: #3FD48D; --b5: #A8F5CD;
+  --b0: #2B3F5C; --b1: #36557A; --b2: #3E7488; --b3: #3A9B84; --b4: #3FD48D; --b5: #A8F5CD; --b6: #566175;
 }
 html[data-theme="light"] {
-  --b0: #CBD5E3; --b1: #A9BAD1; --b2: #7F9BB8; --b3: #4F8F8A; --b4: #11804F; --b5: #0A5C38;
+  --b0: #CBD5E3; --b1: #A9BAD1; --b2: #7F9BB8; --b3: #4F8F8A; --b4: #11804F; --b5: #0A5C38; --b6: #B4BCC8;
 }
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 8px 0 0; }
 .stat { border: 1px solid var(--line); border-radius: 10px; background: var(--raised); padding: 14px 16px; }
@@ -33,7 +33,7 @@ html[data-theme="light"] {
 .tbtn:hover { color: var(--ink); border-color: var(--dim); }
 .tcard .chart { max-width: 760px; }
 .tcard .chart .b0 { fill: var(--b0); } .tcard .chart .b1 { fill: var(--b1); } .tcard .chart .b2 { fill: var(--b2); }
-.tcard .chart .b3 { fill: var(--b3); } .tcard .chart .b4 { fill: var(--b4); } .tcard .chart .b5 { fill: var(--b5); }
+.tcard .chart .b3 { fill: var(--b3); } .tcard .chart .b4 { fill: var(--b4); } .tcard .chart .b5 { fill: var(--b5); } .tcard .chart .b6 { fill: var(--b6); }
 .tcard .chart .miss { fill: none; stroke: var(--dim); stroke-dasharray: 3 3; }
 .tcard .chart .taken-t { fill: var(--dim); font-size: 11px; font-family: var(--mono); }
 .tcard .chart .strong-t { fill: var(--green); font-weight: 650; }
@@ -45,7 +45,7 @@ html[data-theme="light"] {
 .key li { display: flex; align-items: center; gap: 6px; }
 .key i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
 .key .b0 { background: var(--b0); } .key .b1 { background: var(--b1); } .key .b2 { background: var(--b2); }
-.key .b3 { background: var(--b3); } .key .b4 { background: var(--b4); } .key .b5 { background: var(--b5); }
+.key .b3 { background: var(--b3); } .key .b4 { background: var(--b4); } .key .b5 { background: var(--b5); } .key .b6 { background: var(--b6); }
 .tcard .tbl-wrap { margin-top: 10px; }
 .foot-note { color: var(--dim); font-size: 0.9rem; max-width: 70ch; }
 .offer-map { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 24px; align-items: center; }
