@@ -70,7 +70,7 @@
       svg.appendChild(s("text", { x: x + 8, y: y + 16, "class": "tick" + (t.status === "taken" ? " taken-t" : " strong-t") },
         t.status === "taken" ? "Taken" : int(t.strong_matches) + " strong"));
     });
-    var key = h("ul", { "class": "key" }, a.bands.map(function (b, i) { return h("li", {}, [h("i", { "class": "b" + i }), b.replace("1.00 (cap)", "1.00").replace(/^< /, "under ")]); }));
+    var key = h("ul", { "class": "key" }, a.bands.map(function (b, i) { return h("li", {}, [h("i", { "class": "b" + i }), b.replace(/^< /, "under ")]); }));
     key.appendChild(h("li", { text: "Bands count every home we checked. Strong matches are the reachable homes scoring " + a.strong_cutoff.toFixed(2) + " or higher." }));
     card(host, "Homes by score band", "Each bar is every home we checked in that town. Higher bands are better matches for siding work.", svg,
       ["Town", "Status", "Homes checked"].concat(a.bands, ["Strong matches"]),
