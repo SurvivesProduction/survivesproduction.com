@@ -6,10 +6,6 @@
   "foundingTerritoriesTotal": 3,
   "foundingDeadline": null,
   "assumptions": {
-    "reachableShare": 0.496,
-    "reachableShareBasis": "Tool 4 parcels with a known build year and a reachable owner: 794 of 1,600 (Sep 16, 2026)",
-    "mailableShare": 0.10,
-    "mailableShareBasis": "Guess. Being measured with a Street View check of the top 200 homes in one territory.",
     "requestRatePerCardDefault": 0.015,
     "requestRateBenchmark": "ANA direct-mail benchmark for prospect lists: about 2–5% response. An estimate request is a heavier ask, so we plan on 1–2%.",
     "requestRateBenchmarkUrl": "https://www.4over4.com/statistics/direct-mail-response-rate-benchmarks"

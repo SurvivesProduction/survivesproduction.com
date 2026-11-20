@@ -1,0 +1,73 @@
+/* /towns and the compact map on /offer. Tokens come from site.css (body.sp-brand). */
+:root {
+  --b0: #2B3F5C; --b1: #36557A; --b2: #3E7488; --b3: #3A9B84; --b4: #3FD48D; --b5: #A8F5CD; --b6: #566175;
+}
+html[data-theme="light"] {
+  --b0: #CBD5E3; --b1: #A9BAD1; --b2: #7F9BB8; --b3: #4F8F8A; --b4: #11804F; --b5: #0A5C38; --b6: #B4BCC8;
+}
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 8px 0 0; }
+.stat { border: 1px solid var(--line); border-radius: 10px; background: var(--raised); padding: 14px 16px; }
+.stat .k { display: block; font-size: 0.85rem; color: var(--dim); line-height: 1.3; }
+.stat .v { display: block; font-family: var(--display); font-weight: 850; font-stretch: 72%; font-size: clamp(1.7rem, 4.5vw, 2.4rem); line-height: 1.1; color: var(--green); }
+.stat .v.plain { color: var(--ink); }
+@media (max-width: 640px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.tmap { width: 100%; max-width: 520px; height: auto; display: block; margin: 0 auto; }
+.tmap.compact { max-width: 300px; }
+.tmap .town { outline: none; cursor: pointer; }
+.tmap .town path { fill: var(--green); stroke: var(--bg); stroke-width: 1.6; stroke-linejoin: round; }
+.tmap .town.taken path { fill: var(--dim); fill-opacity: 0.3; }
+.tmap .town:hover path, .tmap .town:focus-visible path { stroke: var(--ink); stroke-width: 2.4; }
+.tmap text { font-family: var(--body); text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; fill: var(--ink); }
+.tmap .nm { font-size: 14px; font-weight: 600; }
+.tmap .tk { font-size: 13px; font-weight: 700; fill: var(--dim); }
+.tmap-legend { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 12px 0 4px; font-size: 0.85rem; color: var(--dim); }
+.tmap-legend .ramp { width: 64px; height: 10px; border-radius: 3px; background: linear-gradient(90deg, color-mix(in srgb, var(--green) 18%, transparent), var(--green)); border: 1px solid var(--line); }
+.tmap-legend .grow { flex: 0 0 8px; }
+.tmap-legend .swatch-taken { width: 14px; height: 10px; border-radius: 3px; background: color-mix(in srgb, var(--dim) 30%, transparent); margin-left: 8px; }
+.tmap-info { min-height: 3em; text-align: center; margin: 8px 0 0; font-size: 0.97rem; }
+
+.tcard h3 { margin-bottom: 2px; }
+.tcard .tools { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.tbtn { min-height: 44px; padding: 0 14px; font: inherit; font-size: 0.9rem; color: var(--dim); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; cursor: pointer; }
+.tbtn:hover { color: var(--ink); border-color: var(--dim); }
+.tcard .chart { max-width: 760px; }
+.tcard .chart .b0 { fill: var(--b0); } .tcard .chart .b1 { fill: var(--b1); } .tcard .chart .b2 { fill: var(--b2); }
+.tcard .chart .b3 { fill: var(--b3); } .tcard .chart .b4 { fill: var(--b4); } .tcard .chart .b5 { fill: var(--b5); } .tcard .chart .b6 { fill: var(--b6); }
+.tcard .chart .miss { fill: none; stroke: var(--dim); stroke-dasharray: 3 3; }
+.tcard .chart .taken-t { fill: var(--dim); font-size: 11px; font-family: var(--mono); }
+.tcard .chart .strong-t { fill: var(--green); font-weight: 650; }
+.tcard .chart .cut { stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.tcard .chart .lbl { font-size: 12.5px; }
+.tcard .chart .tick { fill: var(--dim); font-size: 11px; }
+.tcard .chart .track { fill: var(--line); opacity: 0.6; }
+.key { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 10px 0 0; padding: 0; list-style: none; font-size: 0.85rem; color: var(--dim); }
+.key li { display: flex; align-items: center; gap: 6px; }
+.key i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.key .b0 { background: var(--b0); } .key .b1 { background: var(--b1); } .key .b2 { background: var(--b2); }
+.key .b3 { background: var(--b3); } .key .b4 { background: var(--b4); } .key .b5 { background: var(--b5); } .key .b6 { background: var(--b6); }
+.tcard .tbl-wrap { margin-top: 10px; }
+.foot-note { color: var(--dim); font-size: 0.9rem; max-width: 70ch; }
+.offer-map { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 24px; align-items: center; }
+.offer-map p { margin: 0 0 12px; }
+@media (max-width: 640px) { .offer-map { grid-template-columns: minmax(0, 1fr); } }
+
+/* Homes by score band as a list on phones; the SVG stays on wider screens. */
+.band-list { display: none; list-style: none; margin: 0; padding: 0; }
+.band-list li { margin: 0 0 14px; }
+.bl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 5px; font-size: 0.95rem; }
+.bl-name { font-weight: 600; }
+.bl-val { font-family: var(--mono); font-size: 0.8rem; font-weight: 600; color: var(--green); white-space: nowrap; }
+.bl-val.taken-t { color: var(--dim); font-weight: 500; }
+.bl-bar { display: flex; width: 100%; height: 18px; gap: 1px; border-radius: 3px; overflow: hidden; }
+.bl-bar span { flex-basis: 0; min-width: 2px; }
+.band-list .b0 { background: var(--b0); } .band-list .b1 { background: var(--b1); } .band-list .b2 { background: var(--b2); }
+.band-list .b3 { background: var(--b3); } .band-list .b4 { background: var(--b4); } .band-list .b5 { background: var(--b5); } .band-list .b6 { background: var(--b6); }
+@media (max-width: 640px) {
+  .band-list { display: block; }
+  .tcard .band-list + * { margin-top: 0; }
+  #sec-towns .tcard .chart { display: none; }
+}
+
+/* The key and chart are hidden with the hidden attribute when a table is shown; keep display rules from overriding it. */
+.tcard [hidden] { display: none !important; }

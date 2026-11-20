@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var t=null;try{t=localStorage.getItem('sp-theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})()</script>
+<title>Towns We Cover: Real Siding Work Near You | Survives Production</title>
+<meta name="description" content="How many homes we checked in each Quiet Corner town, and how many look like strong siding jobs. Counts only. No addresses, no names.">
+<meta name="theme-color" content="#0E1A2B">
+<link rel="canonical" href="https://survivesproduction.com/towns/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%230E1A2B'/%3E%3Cpath d='M7.5 13.5l3.5 3.5 7.5-8' fill='none' stroke='%233FD48D' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://survivesproduction.com/towns/">
+<meta property="og:title" content="There is real siding work in these towns">
+<meta property="og:description" content="Homes checked and strong matches in every town we cover. Counts only, nothing below town level.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@survivesprod">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/offer.css">
+<link rel="stylesheet" href="/assets/towns.css">
+</head>
+<body class="sp-brand">
+<header class="sp-top">
+  <div class="sp-wrap">
+    <a class="sp-mark" href="/" aria-label="Survives Production home">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="6" fill="none" stroke="#3FD48D" stroke-width="2"/><path d="M7.5 13.5l3.5 3.5 7.5-8" fill="none" stroke="#3FD48D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Survives Production</span>
+    </a>
+    <nav class="sp-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/jobs/">Job board</a>
+      <a href="/towns/" aria-current="page">Towns</a>
+      <a href="/offer/">Offer</a>
+      <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">YouTube<span aria-hidden="true">&nbsp;&#8599;</span></a>
+      <button type="button" class="sp-theme" data-sp-theme aria-label="Switch between light and dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1>There's real work in these towns.</h1>
+      <p class="lede">We sell jobs, not leads. So we check the public record on every home in a town, and only the homes that look like real siding work get mailed. Here is what that looks like, town by town.</p>
+      <p class="intro">Counts only. No addresses, no names, nothing below the town.</p>
+      <div class="stats" id="stat-row"></div>
+      <p id="load-err">The numbers didn't load. Email <a href="mailto:hello@survivesproduction.com">hello@survivesproduction.com</a> and I'll send them.</p>
+      <noscript><p class="sub">The charts on this page need JavaScript. Email hello@survivesproduction.com and I'll send the numbers.</p></noscript>
+    </div>
+  </section>
+
+  <section class="band" id="map">
+    <div class="wrap">
+      <h2>Where the work is</h2>
+      <p class="intro">Darker green means more strong matches. A strong match is a home whose public records point to siding that is likely due, and whose owner we can actually mail. Grey towns are taken: one crew per territory.</p>
+      <div class="card"><div data-town-map="full"></div></div>
+    </div>
+  </section>
+
+  <section class="band" id="sec-towns-band">
+    <div class="wrap">
+      <h2>What's in each town</h2>
+      <p class="intro">Every home we checked, by how good a match it is for siding work. Towns with the most strong matches are on top.</p>
+      <div id="sec-towns"></div>
+    </div>
+  </section>
+
+  <section class="band" id="sec-hist-band">
+    <div class="wrap">
+      <h2>How few make the cut</h2>
+      <p class="intro">We don't mail everyone. A home has to score <span data-cutoff>0.90</span> or higher out of 1, and have an owner we can actually mail, to count as a strong match.</p>
+      <div id="sec-hist"></div>
+    </div>
+  </section>
+
+  <section class="band" id="sec-decades-band">
+    <div class="wrap">
+      <h2>Older homes score higher</h2>
+      <p class="intro">Older homes tend to have older siding. Here is the typical score for homes built in each decade.</p>
+      <div id="sec-decades"></div>
+    </div>
+  </section>
+
+  <section class="band" id="sec-coverage-band">
+    <div class="wrap">
+      <h2>How complete the data is</h2>
+      <p class="intro">Some towns put more online than others. This shows how many homes have each record filled in. Where a record is missing, we know less about that home.</p>
+      <div id="sec-coverage"></div>
+    </div>
+  </section>
+
+  <section class="band" id="about-data">
+    <div class="wrap">
+      <p class="foot-note">The numbers come from public town records, the Connecticut state parcel layer and NOAA storm data, as of <span id="as-of">the date above</span>. No addresses are published here. Any count under 5 is hidden and shown as "&lt;5". Every home is checked against town records or Street View before it's mailed, and some drop out. Want your town's top homes? <a href="/offer/">See the offer</a> or <a href="/jobs/">the job board</a>.</p>
+    </div>
+  </section>
+</main>
+
+<div class="comp">
+  <div class="wrap">
+    <p data-compliance hidden></p>
+    <p>Each crew's CT HIC registration number is printed on its postcards.</p>
+    <p><a href="/privacy/">Privacy notice</a></p>
+  </div>
+</div>
+<footer class="sp-foot">
+  <div class="sp-wrap">
+    <div>
+      <strong>Survives Production</strong>
+      <p data-compliance hidden></p>
+    </div>
+    <nav aria-label="Elsewhere">
+      <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://github.com/SurvivesProduction" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/survivesprod" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@survivesproduction.com">hello@survivesproduction.com</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+  </div>
+</footer>
+<script src="/assets/site.js"></script>
+<script src="/assets/towns-map.js"></script>
+<script src="/assets/towns.js"></script>
+</body>
+</html>

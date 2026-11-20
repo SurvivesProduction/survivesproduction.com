@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="stylesheet" href="/assets/offer.css">
+<link rel="stylesheet" href="/assets/towns.css">
 </head>
 <body class="sp-brand">
 <header class="sp-top">
@@ -31,6 +32,7 @@
     <nav class="sp-nav" aria-label="Main">
       <a href="/">Home</a>
       <a href="/jobs/">Job board</a>
+      <a href="/towns/">Towns</a>
       <a href="/offer/" aria-current="page">Offer</a>
       <a href="https://www.youtube.com/@survivesproduction" target="_blank" rel="noopener">YouTube<span aria-hidden="true">&nbsp;&#8599;</span></a>
       <button type="button" class="sp-theme" data-sp-theme aria-label="Switch between light and dark mode">Theme</button>
@@ -69,7 +71,7 @@
   <section class="band" id="math">
     <div class="wrap">
       <h2>The math, in the open</h2>
-      <p class="intro">Here is how many homes are in each territory, how many I expect to be worth mailing, and what the odds look like. One number is a guess, and it's marked as one.</p>
+      <p class="intro">Here is how many homes are in each territory, how many are strong matches I can actually mail, and what the odds look like.</p>
 
       <div class="card">
         <h3>From all the homes to the ones I mail</h3>
@@ -111,9 +113,17 @@
   <section class="band" id="territories">
     <div class="wrap">
       <h2>Territories</h2>
-      <p class="intro">One crew per territory, for siding. A quarter of mail is one batch of homes. "Quarters of mail" is how many batches the territory can supply before I run out of homes worth mailing.</p>
+      <p class="intro">One crew per territory, for siding. A quarter of mail is one batch of homes. "Quarters of mail" is how many batches the territory can supply before I run out of strong matches.</p>
       <ul class="terr" id="terr-list"></ul>
       <div class="card"><h3>Quarters of mail per territory</h3><div id="terr-chart"></div></div>
+      <div class="card offer-map">
+        <div data-town-map="compact"></div>
+        <div>
+          <h3>Where the strong matches are</h3>
+          <p>Darker green means more strong matches. Grey towns are taken. Counts only, nothing below the town.</p>
+          <p><a class="btn ghost" href="/towns/">See every town's numbers</a></p>
+        </div>
+      </div>
       <p class="sub" id="terr-note"></p>
     </div>
   </section>
@@ -222,6 +232,7 @@
   </div>
 </footer>
 <script src="/assets/site.js"></script>
+<script src="/assets/towns-map.js"></script>
 <script src="/assets/offer.js"></script>
 </body>
 </html>
