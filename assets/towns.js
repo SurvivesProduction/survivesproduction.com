@@ -4,7 +4,7 @@
   "use strict";
   var NS = "http://www.w3.org/2000/svg";
   var $ = function (sel) { return document.querySelector(sel); };
-  var T = window.SPTowns;
+  var T = window.SPTowns, T0 = T;
   var int = T.int;
   var cnt = function (n) { return n === null ? 0 : n; };
 
@@ -48,11 +48,34 @@
   };
 
   function stats(a) {
-    var host = $("#stat-row");
-    [["Homes checked", int(a.homes_scored), 0], ["Towns covered", String(a.towns_covered), 0],
-     ["Strong matches", int(a.strong_matches), 0], ["Records as of", shortDate(a.as_of), 1]].forEach(function (x) {
-      host.appendChild(h("div", { "class": "stat" }, [h("span", { "class": "k", text: x[0] }), h("span", { "class": "v" + (x[2] ? " plain" : ""), text: x[1] })]));
+    var host = $("#stat-row"), oneIn = Math.round(a.homes_scored / a.strong_matches);
+    [["Homes checked", int(a.homes_scored), 0, ""], ["Strong matches", int(a.strong_matches), 0, ""],
+     ["Homes that made the cut", "1 in " + int(oneIn), 0, "That's why each territory goes to one crew.", "wide"],
+     ["Towns covered", String(a.towns_covered), 0, ""], ["Records as of", shortDate(a.as_of), 1, ""]].forEach(function (x) {
+      var kids = [h("span", { "class": "k", text: x[0] }), h("span", { "class": "v" + (x[2] ? " plain" : ""), text: x[1] })];
+      if (x[3]) kids.push(h("span", { "class": "k note", text: x[3] }));
+      host.appendChild(h("div", { "class": "stat" + (x[4] ? " " + x[4] : "") }, kids));
     });
+  }
+
+  /* One card per territory, rolled up by the same SPTowns.territory() that /offer uses, so the numbers match. */
+  function territories(a, offer) {
+    var list = $("#sec-terr"), inTerr = {};
+    offer.territories.forEach(function (t) {
+      var T = T0.territory(offer, t, a), taken = t.status === "taken";
+      t.towns.forEach(function (n) { inTerr[n] = true; });
+      var rows = [h("dt", { text: "Strong matches" }), h("dd", { text: int(T.worth) })];
+      if (!taken) rows.push(h("dt", { text: "Quarters of mail" }), h("dd", { text: T.quarters.toFixed(1) }));
+      if (T.notScored.length) rows.push(h("dt", { text: "Not scored yet" }), h("dd", { text: T.notScored.join(", ") }));
+      list.appendChild(h("li", { "class": taken ? "taken" : "" }, [
+        h("h3", {}, [t.name, h("span", { "class": "pill" + (t.status === "open" ? " open" : ""), text: taken ? "Taken" : t.status === "open" ? "Open" : "Building" })]),
+        h("p", { "class": "towns", text: t.towns.join(", ") }),
+        h("dl", {}, rows)
+      ]));
+    });
+    var loose = a.towns.map(function (t) { return t.town; }).filter(function (n) { return !inTerr[n]; }).sort();
+    $("#terr-unassigned").textContent = loose.length ? "Scored, but not in a territory yet: " + loose.join(", ") + "." : "";
+    document.querySelectorAll("[data-batch]").forEach(function (n) { n.textContent = String(offer.batch.homesPer90Days); });
   }
 
   function townBars(a) {
@@ -100,8 +123,9 @@
     });
     var cx = left + (H.strong_cutoff / (n * H.bin_width)) * inner;
     svg.appendChild(s("line", { x1: cx, x2: cx, y1: top - 8, y2: base, "class": "cut" }));
-    svg.appendChild(s("text", { x: cx - 6, y: 12, "class": "tick", "text-anchor": "end" }, "Under " + H.strong_cutoff.toFixed(2) + ": not a strong match"));
-    svg.appendChild(s("text", { x: cx + 6, y: 12, "class": "tick strong-t" }, "Strong matches"));
+    /* Labels sit at the two ends of one row above the plot, so neither can run off the edge of the viewBox. */
+    svg.appendChild(s("text", { x: left, y: 12, "class": "tick", "text-anchor": "start" }, "Under " + H.strong_cutoff.toFixed(2) + ": not a strong match"));
+    svg.appendChild(s("text", { x: W - left, y: 12, "class": "tick strong-t", "text-anchor": "end" }, "Strong matches"));
     [0, 0.25, 0.5, 0.75, 1].forEach(function (v) {
       svg.appendChild(s("text", { x: left + v * inner, y: hgt - 12, "class": "tick", "text-anchor": v === 0 ? "start" : v === 1 ? "end" : "middle" }, v.toFixed(2)));
     });
@@ -145,9 +169,9 @@
       a.towns.map(function (t) { return [t.town].concat(cols.map(function (c) { return t.coverage_pct[c[0]] + "%"; })); }));
   }
 
-  T.load().then(function (d) {
-    var a = d.agg;
-    stats(a); townBars(a); histogram(a); decades(a); coverage(a);
+  Promise.all([T.load(), window.SP.offer()]).then(function (res) {
+    var d = res[0], a = d.agg;
+    stats(a); territories(a, res[1]); townBars(a); histogram(a); decades(a); coverage(a);
     $("#as-of").textContent = shortDate(a.as_of);
     document.querySelectorAll("[data-cutoff]").forEach(function (n) { n.textContent = a.strong_cutoff.toFixed(2); });
   }).catch(function (err) {

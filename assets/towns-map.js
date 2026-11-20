@@ -35,6 +35,7 @@
     var idle = compact ? "Tap a town." : "Tap or hover a town to see its numbers.";
     info.textContent = idle;
 
+    var labels = s("g", { "class": "labels", "aria-hidden": "true" });   // its own top layer, so no town's outline can paint over a label
     Object.keys(geo.towns).forEach(function (name) {
       var t = byTown[name];
       if (!t) return;
@@ -46,14 +47,15 @@
       g.appendChild(s("title", {}, line(t)));
       if (!compact) {
         var l = geo.towns[name].label;
-        g.appendChild(s("text", { x: l[0], y: l[1] - (taken ? 2 : 0), "class": "nm" }, name));
-        if (taken) g.appendChild(s("text", { x: l[0], y: l[1] + 14, "class": "tk" }, "Taken"));
+        labels.appendChild(s("text", { x: l[0], y: l[1] - (taken ? 2 : 0), "class": "nm" }, name));
+        if (taken) labels.appendChild(s("text", { x: l[0], y: l[1] + 14, "class": "tk" }, "Taken"));
       }
       var show = function () { info.textContent = line(t) + "."; };
       g.addEventListener("mouseenter", show); g.addEventListener("focus", show); g.addEventListener("click", show);
       g.addEventListener("mouseleave", function () { info.textContent = idle; });
       svg.appendChild(g);
     });
+    if (labels.firstChild) svg.appendChild(labels);
     root.innerHTML = "";
     root.appendChild(svg);
     var legend = document.createElement("div");
@@ -69,7 +71,27 @@
     return aggCache;
   }
 
-  window.SPTowns = { load: load, agg: agg, int: int };
+  /* One territory's numbers, rolled up from /data/offer.json (d: its towns and territory definitions) and site_aggregates.json (a).
+     /offer and /towns both call this, so the two pages cannot disagree. A town the export doesn't cover is "not scored yet"
+     and is left out of every number. */
+  function territory(d, t, a) {
+    var byTown = {};
+    a.towns.forEach(function (x) { byTown[x.town] = x; });
+    var towns = t.towns.map(function (n) {
+      var x = d.towns[n], r = byTown[n];
+      return { name: n, scored: !!r, homes: r ? r.homes_scored : 0, reach: r ? r.reachable_homes : 0,
+               strong: r ? r.strong_matches : 0, permit: x.permitData, scraped: x.scraped };
+    });
+    var scored = towns.filter(function (x) { return x.scored; });
+    var sum = function (f) { return scored.reduce(function (acc, x) { return acc + f(x); }, 0); };
+    var worth = sum(function (x) { return x.strong; });
+    return { t: t, towns: towns, notScored: towns.filter(function (x) { return !x.scored; }).map(function (x) { return x.name; }),
+             homes: sum(function (x) { return x.homes; }), reach: sum(function (x) { return x.reach; }),
+             worth: worth, quarters: worth / d.batch.homesPer90Days };
+  }
+  function sellable(t) { return t.status !== "taken"; }
+
+  window.SPTowns = { load: load, agg: agg, int: int, territory: territory, sellable: sellable };
   document.querySelectorAll("[data-town-map]").forEach(function (root) {
     load().then(function (d) { draw(root, d, root.getAttribute("data-town-map") === "compact"); }).catch(function (err) {
       root.textContent = "The map didn't load.";
