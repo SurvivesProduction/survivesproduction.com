@@ -45,14 +45,14 @@
     agg.towns.forEach(function (x) { byTown[x.town] = x; });
     var towns = t.towns.map(function (n) {
       var x = d.towns[n], a = byTown[n];
-      return { name: n, scored: !!a, sf: x.singleFamily, homes: a ? a.homes_scored : 0, reach: a ? a.reachable_homes : 0,
+      return { name: n, scored: !!a, homes: a ? a.homes_scored : 0, reach: a ? a.reachable_homes : 0,
                strong: a ? a.strong_matches : 0, permit: x.permitData, scraped: x.scraped };
     });
     var scored = towns.filter(function (x) { return x.scored; });
     var sum = function (f) { return scored.reduce(function (a, x) { return a + f(x); }, 0); };
     var worth = sum(function (x) { return x.strong; });
     return { t: t, towns: towns, notScored: towns.filter(function (x) { return !x.scored; }).map(function (x) { return x.name; }),
-             sf: sum(function (x) { return x.sf; }), homes: sum(function (x) { return x.homes; }), reach: sum(function (x) { return x.reach; }),
+             homes: sum(function (x) { return x.homes; }), reach: sum(function (x) { return x.reach; }),
              worth: worth, quarters: worth / d.batch.homesPer90Days };
   }
   function sellable(t) { return t.status !== "taken"; }
@@ -117,18 +117,18 @@
     });
     var T = terrs.filter(function (x) { return x.t.id === state.terr; })[0], a = d.assumptions;
     var rows = [
-      { label: "Single-family homes", value: T.sf, text: int(T.sf) },
+      { label: "Homes checked", value: T.homes, text: int(T.homes) },
       { label: "Homes checked, owner reachable", value: T.reach, text: int(T.reach) },
       { label: "Strong matches (reachable, score " + agg.strong_cutoff.toFixed(2) + "+)", value: T.worth, text: int(T.worth), acc: false },
       { label: "Mailed per " + d.price.termDays + " days", value: d.batch.homesPer90Days, text: int(d.batch.homesPer90Days), acc: true }
     ];
     wrap.innerHTML = "";
-    wrap.appendChild(barChart(rows, { max: T.sf, aria: T.t.name + " territory: " + int(T.sf) + " single-family homes, " + int(T.reach) +
+    wrap.appendChild(barChart(rows, { max: T.homes, aria: T.t.name + " territory: " + int(T.homes) + " homes checked, " + int(T.reach) +
       " reachable, " + int(T.worth) + " strong matches, " + d.batch.homesPer90Days + " mailed per " + d.price.termDays + " days." }));
     wrap.appendChild(numbersTable(["Step", "Homes"], rows.map(function (r) { return [r.label, r.text]; })));
     var basis = $("#funnel-basis"); basis.innerHTML = "";
     [
-      ["Single-family homes", d.townCountsSource],
+      ["Homes checked", "Residential homes in the towns we've scored, counted from the same records as the /towns page, as of " + agg.as_of + ". Non-residential parcels and homes without a score are not counted."],
       ["Reachable = " + (T.homes ? Math.round(100 * T.reach / T.homes) : 0) + "% of the homes we checked here", "Measured, not estimated: the owner isn't absentee and has no tax delinquency on file. Counted from the same records as the /towns page, as of " + agg.as_of + "."],
       ["Strong matches = reachable homes scoring " + agg.strong_cutoff.toFixed(2) + " or higher out of 1", "Measured from town records. Every home is still checked on Street View before it's mailed, and some drop out."]
     ].forEach(function (x) {
@@ -213,7 +213,7 @@
         h("h3", {}, [T.t.name, h("span", { "class": "pill" + (T.t.status === "open" ? " open" : ""), text: statusText(T.t) })]),
         h("p", { "class": "towns", text: T.t.towns.join(", ") }),
         h("dl", {}, [
-          h("dt", { text: "Single-family homes" }), h("dd", { text: int(T.sf) }),
+          h("dt", { text: "Homes checked" }), h("dd", { text: int(T.homes) }),
           h("dt", { text: "Homes checked, owner reachable" }), h("dd", { text: int(T.reach) }),
           h("dt", { text: "Strong matches" }), h("dd", { text: int(T.worth) }),
           h("dt", { text: "Quarters of mail" }), h("dd", { text: T.quarters.toFixed(1) }),
@@ -310,8 +310,9 @@
   }
 
   function faq(d) {
-    var a = $("#faq-source"); a.textContent = "Town assessor records, Connecticut's statewide property data, and town building-permit portals. Single-family home counts come from the " + d.townCountsSource.replace(/\.$/, "") + ". ";
-    a.appendChild(h("a", { href: d.townCountsSourceUrl, target: "_blank", rel: "noopener", text: "State parcel data" }));
+    var a = $("#faq-source"); a.textContent = "Town assessor records, Connecticut's statewide property data, and town building-permit portals. Homes checked are the same records the /towns page counts: residential homes in the towns we've scored, as of " + agg.as_of + ". Parcel data comes from the ";
+    a.appendChild(h("a", { href: d.townCountsSourceUrl, target: "_blank", rel: "noopener", text: "Connecticut state parcel layer" }));
+    a.appendChild(document.createTextNode("."));
     fill("#faq-request", "A completed request form from a mailed address, or a call to you that the homeowner says came from the card.");
   }
 
