@@ -64,17 +64,17 @@
     offer.territories.forEach(function (t) {
       var T = T0.territory(offer, t, a), taken = t.status === "taken";
       t.towns.forEach(function (n) { inTerr[n] = true; });
-      var rows = [h("dt", { text: "Strong matches" }), h("dd", { text: int(T.worth) })];
-      if (!taken) rows.push(h("dt", { text: "Quarters of mail" }), h("dd", { text: T.quarters.toFixed(1) }));
-      if (T.notScored.length) rows.push(h("dt", { text: "Not scored yet" }), h("dd", { text: T.notScored.join(", ") }));
+      var rows = [];   /* a taken territory shows name, towns and "Taken" only, as /offer does */
+      if (!taken) rows.push(h("dt", { text: "Strong matches" }), h("dd", { text: int(T.worth) }), h("dt", { text: "Quarters of mail" }), h("dd", { text: T.quarters.toFixed(1) }));
+      if (!taken && T.notScored.length) rows.push(h("dt", { text: "Not scored yet" }), h("dd", { text: T.notScored.join(", ") }));
       list.appendChild(h("li", { "class": taken ? "taken" : "" }, [
         h("h3", {}, [t.name, h("span", { "class": "pill" + (t.status === "open" ? " open" : ""), text: taken ? "Taken" : t.status === "open" ? "Open" : "Building" })]),
         h("p", { "class": "towns", text: t.towns.join(", ") }),
-        h("dl", {}, rows)
+        rows.length ? h("dl", {}, rows) : ""
       ]));
     });
     var loose = a.towns.map(function (t) { return t.town; }).filter(function (n) { return !inTerr[n]; }).sort();
-    $("#terr-unassigned").textContent = loose.length ? "Scored, but not in a territory yet: " + loose.join(", ") + "." : "";
+    $("#terr-unassigned").textContent = loose.length ? "Next territories being built: " + loose.join(", ") + "." : "";
     document.querySelectorAll("[data-batch]").forEach(function (n) { n.textContent = String(offer.batch.homesPer90Days); });
   }
 
