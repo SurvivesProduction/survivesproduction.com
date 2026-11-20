@@ -57,7 +57,7 @@ html[data-theme="light"] {
 .band-list li { margin: 0 0 14px; }
 .bl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 5px; font-size: 0.95rem; }
 .bl-name { font-weight: 600; }
-.bl-val { font-family: var(--mono); font-size: 0.85rem; font-weight: 600; color: var(--green); }
+.bl-val { font-family: var(--mono); font-size: 0.8rem; font-weight: 600; color: var(--green); white-space: nowrap; }
 .bl-val.taken-t { color: var(--dim); font-weight: 500; }
 .bl-bar { display: flex; width: 100%; height: 18px; gap: 1px; border-radius: 3px; overflow: hidden; }
 .bl-bar span { flex-basis: 0; min-width: 2px; }
@@ -68,3 +68,6 @@ html[data-theme="light"] {
   .tcard .band-list + * { margin-top: 0; }
   #sec-towns .tcard .chart { display: none; }
 }
+
+/* The key and chart are hidden with the hidden attribute when a table is shown; keep display rules from overriding it. */
+.tcard [hidden] { display: none !important; }

@@ -75,7 +75,7 @@
       var seg = t.bands.map(function (n, b) { return n ? h("span", { "class": "b" + b, style: "flex-grow:" + n, title: a.bands[b] + ": " + int(n) }) : null; }).filter(Boolean);
       return h("li", {}, [
         h("div", { "class": "bl-head" }, [h("span", { "class": "bl-name", text: t.town }),
-          h("span", { "class": "bl-val" + (t.status === "taken" ? " taken-t" : ""), text: t.status === "taken" ? "Taken" : int(t.strong_matches) + " strong" })]),
+          h("span", { "class": "bl-val" + (t.status === "taken" ? " taken-t" : ""), text: (t.status === "taken" ? "Taken" : int(t.strong_matches) + " strong") + " \u00b7 " + int(t.homes_scored) + " homes" })]),
         h("div", { "class": "bl-bar", role: "img", "aria-label": t.town + ": " + int(t.homes_scored) + " homes checked, " + (t.status === "taken" ? "taken" : int(t.strong_matches) + " strong matches") }, seg)
       ]);
     }));
