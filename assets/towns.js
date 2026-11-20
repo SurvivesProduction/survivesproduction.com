@@ -70,9 +70,19 @@
       svg.appendChild(s("text", { x: x + 8, y: y + 16, "class": "tick" + (t.status === "taken" ? " taken-t" : " strong-t") },
         t.status === "taken" ? "Taken" : int(t.strong_matches) + " strong"));
     });
+    /* Phones (<= 640px): the same data as a list, one row per town, so the labels stay readable. CSS shows one or the other. */
+    var list = h("ol", { "class": "band-list" }, towns.map(function (t) {
+      var seg = t.bands.map(function (n, b) { return n ? h("span", { "class": "b" + b, style: "flex-grow:" + n, title: a.bands[b] + ": " + int(n) }) : null; }).filter(Boolean);
+      return h("li", {}, [
+        h("div", { "class": "bl-head" }, [h("span", { "class": "bl-name", text: t.town }),
+          h("span", { "class": "bl-val" + (t.status === "taken" ? " taken-t" : ""), text: t.status === "taken" ? "Taken" : int(t.strong_matches) + " strong" })]),
+        h("div", { "class": "bl-bar", role: "img", "aria-label": t.town + ": " + int(t.homes_scored) + " homes checked, " + (t.status === "taken" ? "taken" : int(t.strong_matches) + " strong matches") }, seg)
+      ]);
+    }));
+    var chart = h("div", {}, [svg, list]);
     var key = h("ul", { "class": "key" }, a.bands.map(function (b, i) { return h("li", {}, [h("i", { "class": "b" + i }), b.replace(/^< /, "under ")]); }));
     key.appendChild(h("li", { text: "Bands count every home we checked. The bright top segment is the strong matches. The grey segment scores " + a.strong_cutoff.toFixed(2) + " or higher too, but we can't mail the owner." }));
-    card(host, "Homes by score band", "Each bar is every home we checked in that town. Higher bands are better matches for siding work.", svg,
+    card(host, "Homes by score band", "Each bar is every home we checked in that town. Higher bands are better matches for siding work.", chart,
       ["Town", "Status", "Homes checked"].concat(a.bands, ["Strong matches"]),
       towns.map(function (t) { return [t.town, t.status === "taken" ? "Taken" : "Open", int(t.homes_scored)].concat(t.bands.map(int), [int(t.strong_matches)]); }), key);
   }
