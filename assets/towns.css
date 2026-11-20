@@ -5,12 +5,13 @@
 html[data-theme="light"] {
   --b0: #CBD5E3; --b1: #A9BAD1; --b2: #7F9BB8; --b3: #4F8F8A; --b4: #11804F; --b5: #0A5C38; --b6: #B4BCC8;
 }
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 8px 0 0; }
+.stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 8px 0 0; }
 .stat { border: 1px solid var(--line); border-radius: 10px; background: var(--raised); padding: 14px 16px; }
 .stat .k { display: block; font-size: 0.85rem; color: var(--dim); line-height: 1.3; }
 .stat .v { display: block; font-family: var(--display); font-weight: 850; font-stretch: 72%; font-size: clamp(1.7rem, 4.5vw, 2.4rem); line-height: 1.1; color: var(--green); }
 .stat .v.plain { color: var(--ink); }
-@media (max-width: 640px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stat .k.note { margin-top: 4px; }
+@media (max-width: 900px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stat.wide { grid-column: 1 / -1; } }
 
 .tmap { width: 100%; max-width: 520px; height: auto; display: block; margin: 0 auto; }
 .tmap.compact { max-width: 300px; }
@@ -71,3 +72,11 @@ html[data-theme="light"] {
 
 /* The key and chart are hidden with the hidden attribute when a table is shown; keep display rules from overriding it. */
 .tcard [hidden] { display: none !important; }
+
+/* By territory: reuses .terr from offer.css; taken territories are greyed. */
+#sec-terr li.taken { opacity: 0.6; }
+#sec-terr li.taken h3 { color: var(--dim); }
+#terr-unassigned:empty { display: none; }
+.grows { margin-top: 18px; max-width: 70ch; }
+.grows h3 { margin-bottom: 4px; }
+.grows p { margin: 0; color: var(--dim); }

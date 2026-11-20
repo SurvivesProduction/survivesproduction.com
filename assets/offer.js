@@ -40,22 +40,8 @@
   /* Reachable homes and strong matches come from /data/site_aggregates.json (the same export /towns reads), so the two pages
      cannot disagree. A town the export doesn't cover is "not scored yet" and is left out of every number. */
   var agg = null;
-  function territory(d, t) {
-    var byTown = {};
-    agg.towns.forEach(function (x) { byTown[x.town] = x; });
-    var towns = t.towns.map(function (n) {
-      var x = d.towns[n], a = byTown[n];
-      return { name: n, scored: !!a, homes: a ? a.homes_scored : 0, reach: a ? a.reachable_homes : 0,
-               strong: a ? a.strong_matches : 0, permit: x.permitData, scraped: x.scraped };
-    });
-    var scored = towns.filter(function (x) { return x.scored; });
-    var sum = function (f) { return scored.reduce(function (a, x) { return a + f(x); }, 0); };
-    var worth = sum(function (x) { return x.strong; });
-    return { t: t, towns: towns, notScored: towns.filter(function (x) { return !x.scored; }).map(function (x) { return x.name; }),
-             homes: sum(function (x) { return x.homes; }), reach: sum(function (x) { return x.reach; }),
-             worth: worth, quarters: worth / d.batch.homesPer90Days };
-  }
-  function sellable(t) { return t.status !== "taken"; }
+  var territory = function (d, t) { return window.SPTowns.territory(d, t, agg); };
+  var sellable = window.SPTowns.sellable;
   function statusText(t) {
     if (t.status === "open") return t.phase === "founding" ? "Open (founding price)" : "Open";
     if (t.status === "taken") return "Taken";
